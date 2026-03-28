@@ -13,6 +13,7 @@ const services = [
   { name: "Accommodation Services", href: "/accommodation-services" },
   { name: "Community Access", href: "/community-access" },
   { name: "Assistance with Daily Life", href: "/assistance-daily-life" },
+  { name: "Day Programs", href: "/day-programs" },
 ];
 
 const navLinks = [

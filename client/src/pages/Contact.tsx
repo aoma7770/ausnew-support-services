@@ -37,8 +37,8 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Location",
-    value: "Mount Druitt, Sydney NSW 2770",
-    href: "https://maps.google.com/?q=Mount+Druitt+NSW+2770",
+    value: "Australia-Wide NDIS Provider",
+    href: null,
     color: "#FF6B6B",
   },
   {
@@ -193,6 +193,7 @@ export default function Contact() {
                     { name: "Accommodation Services", href: "/accommodation-services#enquiry-form", color: "#1B3A5C" },
                     { name: "Community Access", href: "/community-access", color: "#2BBFCF" },
                     { name: "Assistance with Daily Life", href: "/assistance-daily-life", color: "#FF6B6B" },
+                    { name: "Day Programs", href: "/day-programs", color: "#2BBFCF" },
                     { name: "NDIS Pricing", href: "/ndis-pricing", color: "#1B3A5C" },
                   ].map((item) => (
                     <Link

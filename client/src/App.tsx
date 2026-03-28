@@ -12,6 +12,7 @@ import NDISPricing from "./pages/NDISPricing";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
+import DayPrograms from "./pages/DayPrograms";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FloatingCTA from "./components/FloatingCTA";
@@ -27,6 +28,7 @@ function Router() {
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       <Route path="/blog" component={Blog} />
+      <Route path="/day-programs" component={DayPrograms} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

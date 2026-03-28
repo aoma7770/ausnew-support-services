@@ -9,10 +9,10 @@ import { ArrowRight, CheckCircle, Home as HomeIcon, Users, Heart, Star, ChevronR
 
 // CDN URLs
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/hero_banner-nNLePF7GeeoLT93j6drjKM.webp";
-const COMMUNITY_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/community_access-akaNJq2n7GsWugNyec3gQZ.webp";
+const COMMUNITY_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/community_access_real-fn62gg6s3X8R6yapfLBqjx.webp";
 const DAILY_LIFE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/daily_life-L5UDybDMfYQF4FrksVwCuA.webp";
 const ACCOMMODATION_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/accommodation_hero-ZqhR9LesyVP4JmnMrYNmgP.webp";
-const ABOUT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/ndis_about-5588JiupuU7m9jyMGZdGPV.webp";
+const ABOUT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/team_group-R2Dqsi6CPrEg6KoPbowcjQ.webp";
 const STMARYS_1 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/stmarys_1_91f61127.jpg";
 const STMARYS_3 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/stmarys_3_83eaffb2.jpg";
 const STMARYS_5 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/stmarys_5_67e38e3f.jpg";
@@ -46,7 +46,7 @@ const services = [
   {
     icon: HomeIcon,
     title: "Accommodation Services",
-    description: "Quality SDA and SIL housing options across Sydney. Modern, accessible homes designed for comfort, independence, and community connection.",
+    description: "Quality SDA and SIL housing options across Australia. Purpose-built, accessible homes designed for comfort, independence, and community connection.",
     href: "/accommodation-services",
     img: ACCOMMODATION_IMG,
     color: "#1B3A5C",
@@ -67,13 +67,20 @@ const services = [
     img: DAILY_LIFE_IMG,
     color: "#FF6B6B",
   },
+  {
+    icon: Star,
+    title: "Day Programs",
+    description: "Structured, engaging day programs that build skills, foster social connections, and promote independence in a fun, supportive environment.",
+    href: "/day-programs",
+    img: COMMUNITY_IMG,
+    color: "#2BBFCF",
+  },
 ];
-
 const stats = [
-  { value: 500, suffix: "+", label: "Participants Supported", icon: Users },
+  { value: 10000, suffix: "+", label: "Hours of Person-Centred Support", icon: Heart },
   { value: 7, suffix: "+", label: "Years of Experience", icon: Award },
   { value: 24, suffix: "/7", label: "Support Available", icon: Clock },
-  { value: 100, suffix: "%", label: "NDIS Registered", icon: Shield },
+  { value: 3, suffix: "", label: "NDIS Registered Provider", icon: Shield },
 ];
 
 const testimonials = [
@@ -136,7 +143,7 @@ export default function Home() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold mb-6"
               style={{ background: 'rgba(43,191,207,0.2)', color: '#2BBFCF', border: '1px solid rgba(43,191,207,0.4)', fontFamily: 'Poppins, sans-serif' }}>
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse inline-block"></span>
-              NDIS Registered Provider — Sydney, NSW
+              NDIS Registered Provider — Australia-Wide
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6"
@@ -147,7 +154,7 @@ export default function Home() {
 
             <p className="text-lg md:text-xl mb-8 leading-relaxed max-w-2xl"
               style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }}>
-              AUSnew Support Services empowers people with disability to live the life they choose. We provide personalised NDIS support across accommodation, community access, and daily living.
+              AUSnew Support Services empowers people with disability to live the life they choose. We provide personalised NDIS support across accommodation, community access, daily living, and day programs.
             </p>
 
             <div className="flex flex-wrap gap-4 mb-12">
@@ -170,7 +177,7 @@ export default function Home() {
 
             {/* Trust indicators */}
             <div className="flex flex-wrap gap-4">
-              {["NDIS Registered", "24/7 Support", "Sydney-Wide", "Person-Centred Care"].map((item) => (
+              {["NDIS Registered", "24/7 Support", "Australia-Wide", "Person-Centred Care"].map((item) => (
                 <div key={item} className="flex items-center gap-2 text-sm"
                   style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }}>
                   <CheckCircle className="w-4 h-4" style={{ color: '#2BBFCF' }} />
@@ -239,14 +246,14 @@ export default function Home() {
               What We Offer
             </div>
             <h2 className="text-3xl md:text-5xl font-black mb-4" style={{ color: '#1B3A5C', fontFamily: 'Poppins, sans-serif' }}>
-              Our 3 Core Services
+              Our 4 Core Services
             </h2>
             <p className="text-lg max-w-2xl mx-auto" style={{ color: '#64748b', fontFamily: 'Inter, sans-serif' }}>
-              Everything we do stems from three pillars of support — designed to empower you to live independently and fully.
+              Everything we do stems from four pillars of support — designed to empower you to live independently and fully.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, i) => {
               const Icon = service.icon;
               return (
@@ -357,7 +364,7 @@ export default function Home() {
                 A Community Where Everyone Lives the Life They Choose
               </h2>
               <p className="text-base leading-relaxed mb-5" style={{ color: '#64748b', fontFamily: 'Inter, sans-serif' }}>
-                Founded in 2017, AUSnew Support Services is a registered NDIS provider based in Sydney, NSW. We are passionate about delivering high-quality, person-centred support that empowers individuals and families affected by disability.
+                Founded in 2017, AUSnew Support Services is a registered NDIS provider. We are passionate about delivering high-quality, person-centred support that empowers individuals and families affected by disability.
               </p>
               <p className="text-base leading-relaxed mb-8" style={{ color: '#64748b', fontFamily: 'Inter, sans-serif' }}>
                 Our approach is built on integrity, respect, and empowerment. We partner with participants to understand their unique needs and create meaningful, lasting change in their lives.
@@ -407,10 +414,10 @@ export default function Home() {
               Our Properties
             </div>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-              Modern, Accessible Homes Across Sydney
-            </h2>
-            <p className="text-base max-w-2xl mx-auto" style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }}>
-              Our SDA properties are purpose-built for comfort, accessibility, and independence — located in St Marys, Narangba, Horsley, and more.
+            Modern, Accessible Homes Across Australia
+          </h2>
+          <p className="text-base max-w-2xl mx-auto" style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }}>
+            Our purpose-built properties are designed for comfort, accessibility, and independence — available across Australia for eligible NDIS participants.
             </p>
           </div>
 
@@ -439,11 +446,11 @@ export default function Home() {
 
           <div className="text-center mt-10">
             <Link
-              href="/accommodation-services"
+              href="/accommodation-services#enquiry-form"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-base text-white transition-all hover:scale-105"
               style={{ background: '#2BBFCF', fontFamily: 'Poppins, sans-serif', boxShadow: '0 8px 30px rgba(43,191,207,0.3)' }}
             >
-              View All Properties <ArrowRight className="w-5 h-5" />
+              Enquire About Accommodation <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
         </div>

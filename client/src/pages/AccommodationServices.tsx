@@ -34,17 +34,17 @@ const features = [
   "Modern, purpose-built accessible homes",
   "Shared living (up to 5 participants) or solo options",
   "24-hour support available",
-  "Properties across Sydney — St Marys, Horsley, Plumpton, Moorebank",
+  "Properties available across Australia for eligible NDIS participants",
   "NDIS-funded accommodation pathways",
 ];
 
 const propertyImages = [
-  { src: STMARYS_1, alt: "St Marys property - living room" },
-  { src: STMARYS_2, alt: "St Marys property - kitchen" },
-  { src: STMARYS_3, alt: "St Marys property - bedroom" },
-  { src: STMARYS_4, alt: "St Marys property - bathroom" },
-  { src: STMARYS_5, alt: "St Marys property - exterior" },
-  { src: STMARYS_6, alt: "St Marys property - dining area" },
+  { src: STMARYS_1, alt: "AUSnew property - living room" },
+  { src: STMARYS_2, alt: "AUSnew property - kitchen" },
+  { src: STMARYS_3, alt: "AUSnew property - bedroom" },
+  { src: STMARYS_4, alt: "AUSnew property - bathroom" },
+  { src: STMARYS_5, alt: "AUSnew property - exterior" },
+  { src: STMARYS_6, alt: "AUSnew property - dining area" },
 ];
 
 export default function AccommodationServices() {
@@ -78,7 +78,7 @@ export default function AccommodationServices() {
             Accommodation Services
           </h1>
           <p className="text-lg max-w-2xl" style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }}>
-            Quality SDA and SIL housing across Sydney. Modern, accessible homes where you can live with independence, comfort, and the right level of support.
+            Quality SDA and SIL housing across Australia. Modern, accessible homes where you can live with independence, comfort, and the right level of support.
           </p>
         </div>
         <div className="absolute bottom-0 left-0 right-0">
@@ -180,7 +180,7 @@ export default function AccommodationServices() {
             Our Properties
           </h2>
           <p className="text-base text-center mb-10" style={{ color: '#64748b', fontFamily: 'Inter, sans-serif' }}>
-            Professional, accessible homes — St Marys, NSW
+            Professional, accessible homes — Australia-Wide
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {propertyImages.map((img, i) => (

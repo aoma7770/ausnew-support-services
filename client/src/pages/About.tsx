@@ -6,7 +6,7 @@ import { useRef, useEffect, useState } from "react";
 import { Link } from "wouter";
 import { ArrowRight, Heart, Shield, Users, Star, Phone } from "lucide-react";
 
-const ABOUT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/ndis_about-5588JiupuU7m9jyMGZdGPV.webp";
+const ABOUT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/team_group-R2Dqsi6CPrEg6KoPbowcjQ.webp";
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/hero_banner-nNLePF7GeeoLT93j6drjKM.webp";
 
 function useScrollReveal(threshold = 0.15) {
@@ -81,7 +81,7 @@ export default function About() {
               <div className="absolute -bottom-5 -right-5 p-5 rounded-2xl shadow-xl"
                 style={{ background: '#2BBFCF', color: 'white' }}>
                 <div className="text-3xl font-black" style={{ fontFamily: 'Poppins, sans-serif' }}>2017</div>
-                <div className="text-xs font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>Founded in Sydney</div>
+                <div className="text-xs font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>Proudly serving Australia</div>
               </div>
             </div>
             <div>
@@ -92,17 +92,17 @@ export default function About() {
                 AUSnew Support Services was founded in 2017 with a simple but powerful mission: to provide high-quality, person-centred disability support that truly makes a difference in people's lives.
               </p>
               <p className="text-base leading-relaxed mb-4" style={{ color: '#64748b', fontFamily: 'Inter, sans-serif' }}>
-                Based in Sydney, NSW, we are a registered NDIS provider serving participants across the Greater Sydney region. Our team of dedicated support workers, coordinators, and management staff share a common passion — empowering people with disability to live independently and with dignity.
+                We are a registered NDIS provider serving participants across Australia. Our team of dedicated support workers, coordinators, and management staff share a common passion — empowering people with disability to live independently and with dignity.
               </p>
               <p className="text-base leading-relaxed mb-6" style={{ color: '#64748b', fontFamily: 'Inter, sans-serif' }}>
                 Over the years, we have grown from a small team to a trusted provider supporting hundreds of participants. But our core values have never changed: compassion, integrity, empowerment, and excellence.
               </p>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { value: "500+", label: "Participants Supported" },
+                  { value: "10,000+", label: "Hours of Support" },
                   { value: "7+", label: "Years Experience" },
                   { value: "50+", label: "Support Workers" },
-                  { value: "3", label: "Core Services" },
+                  { value: "4", label: "Core Services" },
                 ].map((stat) => (
                   <div key={stat.label} className="p-4 rounded-xl text-center"
                     style={{ background: '#f0f9fa' }}>

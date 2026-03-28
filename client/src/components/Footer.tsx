@@ -21,7 +21,7 @@ export default function Footer() {
               className="h-14 w-auto mb-5 brightness-0 invert"
             />
             <p className="text-sm leading-relaxed mb-5" style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }}>
-              A registered NDIS provider delivering quality disability support services across Sydney and New South Wales. Empowering individuals to live the life they choose.
+              A registered NDIS provider delivering quality disability support services across Australia. Empowering individuals to live the life they choose.
             </p>
             <div className="flex gap-3">
               <a
@@ -65,6 +65,7 @@ export default function Footer() {
                 { name: "Accommodation Services", href: "/accommodation-services" },
                 { name: "Community Access", href: "/community-access" },
                 { name: "Assistance with Daily Life", href: "/assistance-daily-life" },
+                { name: "Day Programs", href: "/day-programs" },
                 { name: "NDIS Pricing", href: "/ndis-pricing" },
               ].map((item) => (
                 <li key={item.href}>
@@ -147,7 +148,7 @@ export default function Footer() {
               <li>
                 <div className="flex items-start gap-3 text-sm" style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }}>
                   <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#2BBFCF' }} />
-                  <span>Mount Druitt, Sydney NSW 2770, Australia</span>
+                  <span>Australia-Wide NDIS Provider</span>
                 </div>
               </li>
             </ul>
@@ -175,7 +176,7 @@ export default function Footer() {
             <span>•</span>
             <span>ABN: Ausnew Home Care Service Pty Ltd</span>
             <span>•</span>
-            <span>Serving Sydney & NSW</span>
+            <span>Serving Australia-Wide</span>
             <span>•</span>
             <span>24/7 Support Available</span>
           </div>
