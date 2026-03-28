@@ -158,13 +158,13 @@ export default function Home() {
             </p>
 
             <div className="flex flex-wrap gap-4 mb-12">
-              <Link
-                href="/contact"
+              <a
+                href="#enquiry-form"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-base text-white transition-all hover:scale-105 hover:shadow-2xl"
                 style={{ background: '#FF6B6B', fontFamily: 'Poppins, sans-serif', boxShadow: '0 8px 30px rgba(255,107,107,0.4)' }}
               >
                 Get Support Now <ArrowRight className="w-5 h-5" />
-              </Link>
+              </a>
               <a
                 href="tel:0291594976"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-base transition-all hover:scale-105"
@@ -524,47 +524,64 @@ export default function Home() {
               >
                 View NDIS Pricing <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link
-                href="/contact"
+              <a
+                href="/#enquiry-form"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-bold text-sm transition-all hover:scale-105"
                 style={{ background: 'rgba(255,255,255,0.1)', color: 'white', border: '2px solid rgba(255,255,255,0.3)', fontFamily: 'Poppins, sans-serif' }}
               >
                 Get a Free Quote
-              </Link>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===== FINAL CTA SECTION ===== */}
+      {/* ===== ENQUIRY FORM SECTION ===== */}
       <section
+        id="enquiry-form"
         className="py-20 relative overflow-hidden"
         style={{ background: '#f0f9fa' }}
-        aria-label="Contact call to action"
+        aria-label="Enquiry form"
       >
-        <div className="container mx-auto px-4 max-w-7xl text-center relative z-10">
-          <h2 className="text-3xl md:text-5xl font-black mb-5" style={{ color: '#1B3A5C', fontFamily: 'Poppins, sans-serif' }}>
-            Ready to Start Your Journey?
-          </h2>
-          <p className="text-lg mb-8 max-w-2xl mx-auto" style={{ color: '#64748b', fontFamily: 'Inter, sans-serif' }}>
-            Contact our friendly team today. We'll help you understand your NDIS options and find the right support for your needs.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-10 py-4 rounded-full font-bold text-base text-white transition-all hover:scale-105"
-              style={{ background: '#FF6B6B', fontFamily: 'Poppins, sans-serif', boxShadow: '0 8px 30px rgba(255,107,107,0.35)' }}
-            >
-              Contact Us Today <ArrowRight className="w-5 h-5" />
-            </Link>
-            <a
-              href="tel:0291594976"
-              className="inline-flex items-center gap-2 px-10 py-4 rounded-full font-bold text-base transition-all hover:scale-105"
-              style={{ background: '#1B3A5C', color: 'white', fontFamily: 'Poppins, sans-serif' }}
-            >
-              <Phone className="w-5 h-5" />
-              Call (02) 9159 4976
-            </a>
+        <div className="container mx-auto px-4 max-w-4xl relative z-10">
+          <div className="text-center mb-10">
+            <div className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4"
+              style={{ background: 'rgba(43,191,207,0.1)', color: '#2BBFCF', fontFamily: 'Poppins, sans-serif' }}>
+              Get in Touch
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black mb-4" style={{ color: '#1B3A5C', fontFamily: 'Poppins, sans-serif' }}>
+              Ready to Start Your Journey?
+            </h2>
+            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#64748b', fontFamily: 'Inter, sans-serif' }}>
+              Fill in the form below and our friendly team will be in touch within 1 business day to discuss your NDIS options and find the right support for you.
+            </p>
+          </div>
+
+          <div className="rounded-3xl overflow-hidden" style={{ background: 'white', boxShadow: '0 20px 60px rgba(27,58,92,0.12)' }}>
+            <div className="p-2">
+              <iframe
+                title="Support Services Enquiry"
+                src="https://abnab.wufoo.com/embed/q1628kbm0ra99y1/"
+                allowTransparency={true}
+                frameBorder={0}
+                scrolling="yes"
+                style={{ width: '100%', height: '620px', border: 'none', background: 'transparent' }}
+                aria-label="Support services enquiry form"
+              />
+            </div>
+          </div>
+
+          <div className="mt-8 text-center">
+            <p className="text-sm" style={{ color: '#94a3b8', fontFamily: 'Inter, sans-serif' }}>
+              Prefer to call? Reach us on{" "}
+              <a href="tel:0291594976" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>
+                (02) 9159 4976
+              </a>{" "}
+              or email{" "}
+              <a href="mailto:support@ausnewhomecare.com" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>
+                support@ausnewhomecare.com
+              </a>
+            </p>
           </div>
         </div>
       </section>

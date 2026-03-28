@@ -35,15 +35,15 @@ export default function FloatingCTA() {
             <Phone className="w-4 h-4" />
             Call (02) 9159 4976
           </a>
-          <Link
-            href="/contact"
+          <a
+            href="/#enquiry-form"
             className="flex items-center gap-3 px-4 py-3 rounded-full text-sm font-semibold text-white shadow-lg transition-all hover:scale-105"
             style={{ background: '#2BBFCF', fontFamily: 'Poppins, sans-serif' }}
             onClick={() => setExpanded(false)}
           >
             <MessageCircle className="w-4 h-4" />
             Send an Enquiry
-          </Link>
+          </a>
         </div>
       )}
 

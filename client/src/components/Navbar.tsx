@@ -126,8 +126,8 @@ export default function Navbar() {
               <Phone className="w-4 h-4" />
               (02) 9159 4976
             </a>
-            <Link
-              href="/contact"
+            <a
+              href="/#enquiry-form"
               className="btn-teal text-sm"
               style={{
                 background: '#2BBFCF',
@@ -144,7 +144,7 @@ export default function Navbar() {
               }}
             >
               Get Support Now
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -201,13 +201,13 @@ export default function Navbar() {
               )
             )}
             <div className="pt-3">
-              <Link
-                href="/contact"
+              <a
+                href="/#enquiry-form"
                 className="block text-center py-3 px-6 rounded-full font-bold text-white text-sm"
                 style={{ background: '#2BBFCF', fontFamily: 'Poppins, sans-serif' }}
               >
                 Get Support Now
-              </Link>
+              </a>
             </div>
           </nav>
         </div>
