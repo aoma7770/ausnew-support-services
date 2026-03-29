@@ -264,7 +264,6 @@ export default function AccommodationServices() {
               <iframe
                 title="Accommodation Services Enquiry Form"
                 src="https://abnab.wufoo.com/embed/x1cw6qtz11uk4s9/"
-                allowTransparency={true}
                 frameBorder={0}
                 scrolling="yes"
                 style={{ width: '100%', height: '544px', border: 'none', background: 'transparent' }}

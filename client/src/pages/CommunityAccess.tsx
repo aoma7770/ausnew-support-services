@@ -230,7 +230,6 @@ export default function CommunityAccess() {
               <iframe
                 title="Community Access Enquiry Form"
                 src="https://abnab.wufoo.com/embed/q1628kbm0ra99y1/"
-                allowTransparency={true}
                 frameBorder={0}
                 scrolling="yes"
                 style={{ width: '100%', height: '543px', border: 'none', background: 'transparent' }}

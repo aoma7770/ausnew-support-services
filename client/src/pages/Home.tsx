@@ -569,7 +569,6 @@ export default function Home() {
               <iframe
                 title="Support Services Enquiry"
                 src="https://abnab.wufoo.com/embed/q1628kbm0ra99y1/"
-                allowTransparency={true}
                 frameBorder={0}
                 scrolling="yes"
                 style={{ width: '100%', height: '620px', border: 'none', background: 'transparent' }}

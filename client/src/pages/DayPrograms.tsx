@@ -432,7 +432,6 @@ export default function DayPrograms() {
               <iframe
                 title="Day Programs Enquiry Form"
                 src="https://abnab.wufoo.com/embed/q1628kbm0ra99y1/"
-                allowTransparency={true}
                 frameBorder={0}
                 scrolling="yes"
                 style={{ width: '100%', height: '600px', border: 'none', background: 'transparent' }}
