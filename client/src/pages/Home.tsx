@@ -5,6 +5,7 @@
  */
 import { useRef, useEffect, useState } from "react";
 import { Link } from "wouter";
+import { useAuth } from "@/_core/hooks/useAuth";
 import { ArrowRight, CheckCircle, Home as HomeIcon, Users, Heart, Star, ChevronRight, Phone, Award, Shield, Clock } from "lucide-react";
 
 // CDN URLs
@@ -107,6 +108,10 @@ const testimonials = [
 ];
 
 export default function Home() {
+  // The userAuth hooks provides authentication state
+  // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
+  let { user, loading, error, isAuthenticated, logout } = useAuth();
+
   const statsSection = useScrollReveal(0.2);
   const servicesSection = useScrollReveal(0.1);
   const aboutSection = useScrollReveal(0.1);
