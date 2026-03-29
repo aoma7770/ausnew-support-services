@@ -25,7 +25,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-3">
               <a
-                href="https://www.facebook.com/ausnewhomecare/"
+                href="https://www.facebook.com/ausnewsupportservices/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow AUSnew on Facebook"
@@ -137,12 +137,12 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:support@ausnewhomecare.com"
+                  href="mailto:support@ausnesupports.com.au"
                   className="flex items-start gap-3 text-sm transition-colors hover:text-[#2BBFCF] group"
                   style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }}
                 >
                   <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:text-[#2BBFCF]" style={{ color: '#2BBFCF' }} />
-                  support@ausnewhomecare.com
+                  support@ausnesupports.com.au
                 </a>
               </li>
               <li>
@@ -174,7 +174,7 @@ export default function Footer() {
               NDIS Registered Provider
             </span>
             <span>•</span>
-            <span>ABN: Ausnew Home Care Service Pty Ltd</span>
+            <span>ABN: 31 620 493 941</span>
             <span>•</span>
             <span>Serving Australia-Wide</span>
             <span>•</span>

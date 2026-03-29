@@ -6,13 +6,13 @@ import { useRef, useEffect, useState } from "react";
 import { Link } from "wouter";
 import { ArrowRight, CheckCircle, MapPin, Phone, Home, Star, Users, Shield } from "lucide-react";
 
-const ACCOMMODATION_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/accommodation_hero-ZqhR9LesyVP4JmnMrYNmgP.webp";
-const STMARYS_1 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/stmarys_1_91f61127.jpg";
-const STMARYS_2 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/stmarys_2_0b9cc898.jpg";
-const STMARYS_3 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/stmarys_3_83eaffb2.jpg";
-const STMARYS_4 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/stmarys_4_80025952.jpg";
-const STMARYS_5 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/stmarys_5_67e38e3f.jpg";
-const STMARYS_6 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/stmarys_6_b73dd6fc.jpg";
+const ACCOMMODATION_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/horsley_living_room_a02d578e.jpg";
+const HORSLEY_1 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/horsley_living_room_a02d578e.jpg";
+const HORSLEY_2 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/horsley_open_plan_61f12aa9.jpg";
+const HORSLEY_3 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/horsley_bedroom_0c7c27dd.jpg";
+const HORSLEY_4 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/horsley_room2_1d68c341.jpg";
+const FAIRFIELD_1 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/openday_team_client_3e2d5bf2.jpg";
+const FAIRFIELD_2 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/openday_client_assist_c54c34e3.jpg";
 
 function useScrollReveal(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
@@ -39,12 +39,12 @@ const features = [
 ];
 
 const propertyImages = [
-  { src: STMARYS_1, alt: "AUSnew property - living room" },
-  { src: STMARYS_2, alt: "AUSnew property - kitchen" },
-  { src: STMARYS_3, alt: "AUSnew property - bedroom" },
-  { src: STMARYS_4, alt: "AUSnew property - bathroom" },
-  { src: STMARYS_5, alt: "AUSnew property - exterior" },
-  { src: STMARYS_6, alt: "AUSnew property - dining area" },
+  { src: HORSLEY_1, alt: "AUSnew SDA property - spacious living room" },
+  { src: HORSLEY_2, alt: "AUSnew SDA property - open plan living and dining" },
+  { src: HORSLEY_3, alt: "AUSnew SDA property - accessible bedroom" },
+  { src: HORSLEY_4, alt: "AUSnew SDA property - modern interior" },
+  { src: FAIRFIELD_1, alt: "AUSnew team with participant at open home" },
+  { src: FAIRFIELD_2, alt: "AUSnew support worker assisting participant" },
 ];
 
 export default function AccommodationServices() {
@@ -235,7 +235,7 @@ export default function AccommodationServices() {
               Accommodation Services Enquiry
             </h2>
             <p className="text-base" style={{ color: '#64748b', fontFamily: 'Inter, sans-serif' }}>
-              Fill in the form below and our team will be in touch within 24 hours.
+              Complete the form below to schedule a call and discuss your NDIS support options. Our friendly team will be in touch as soon as possible.
             </p>
           </div>
 
@@ -265,7 +265,7 @@ export default function AccommodationServices() {
 
           <p className="text-center text-sm mt-6" style={{ color: '#94a3b8', fontFamily: 'Inter, sans-serif' }}>
             Prefer to call? <a href="tel:0291594976" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>(02) 9159 4976</a> or email{" "}
-            <a href="mailto:support@ausnewhomecare.com" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>support@ausnewhomecare.com</a>
+            <a href="mailto:support@ausnesupports.com.au" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>support@ausnesupports.com.au</a>
           </p>
         </div>
       </section>

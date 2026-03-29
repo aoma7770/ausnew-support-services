@@ -6,7 +6,7 @@ import { useRef, useEffect, useState } from "react";
 import { Link } from "wouter";
 import { ArrowRight, CheckCircle, Heart, Phone, Utensils, ShowerHead, Pill, Home, Shirt, Clock } from "lucide-react";
 
-const DAILY_LIFE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/daily_life-L5UDybDMfYQF4FrksVwCuA.webp";
+const DAILY_LIFE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/openday_client_assist_c54c34e3.jpg";
 
 function useScrollReveal(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);

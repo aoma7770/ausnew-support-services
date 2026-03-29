@@ -12,10 +12,12 @@ const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8b
 const COMMUNITY_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/community_access_real-fn62gg6s3X8R6yapfLBqjx.webp";
 const DAILY_LIFE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/daily_life-L5UDybDMfYQF4FrksVwCuA.webp";
 const ACCOMMODATION_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/accommodation_hero-ZqhR9LesyVP4JmnMrYNmgP.webp";
-const ABOUT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/team_group-R2Dqsi6CPrEg6KoPbowcjQ.webp";
-const STMARYS_1 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/stmarys_1_91f61127.jpg";
-const STMARYS_3 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/stmarys_3_83eaffb2.jpg";
-const STMARYS_5 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/stmarys_5_67e38e3f.jpg";
+const ABOUT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/openday_team_client_3e2d5bf2.jpg";
+const HORSLEY_1 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/horsley_living_room_a02d578e.jpg";
+const HORSLEY_2 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/horsley_open_plan_61f12aa9.jpg";
+const HORSLEY_3 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/horsley_bedroom_0c7c27dd.jpg";
+const VAN_HARBOUR = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/van_harbour_e462bb57.jpg";
+const CLIENT_ASSIST = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/openday_client_assist_c54c34e3.jpg";
 
 function useScrollReveal(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
@@ -56,7 +58,7 @@ const services = [
     title: "Community Access",
     description: "Get out, connect, and thrive. We support you to participate in social activities, appointments, and community programs that matter to you.",
     href: "/community-access",
-    img: COMMUNITY_IMG,
+    img: VAN_HARBOUR,
     color: "#2BBFCF",
   },
   {
@@ -64,7 +66,7 @@ const services = [
     title: "Assistance with Daily Life",
     description: "Personalised support for everyday activities — from personal care and meal preparation to domestic assistance and medication management.",
     href: "/assistance-daily-life",
-    img: DAILY_LIFE_IMG,
+    img: CLIENT_ASSIST,
     color: "#FF6B6B",
   },
   {
@@ -80,7 +82,7 @@ const stats = [
   { value: 10000, suffix: "+", label: "Hours of Person-Centred Support", icon: Heart },
   { value: 7, suffix: "+", label: "Years of Experience", icon: Award },
   { value: 24, suffix: "/7", label: "Support Available", icon: Clock },
-  { value: 3, suffix: "", label: "NDIS Registered Provider", icon: Shield },
+  { value: 100, suffix: "%", label: "Participant Satisfaction Rate", icon: Shield },
 ];
 
 const testimonials = [
@@ -422,7 +424,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {[STMARYS_1, STMARYS_3, STMARYS_5].map((img, i) => (
+            {[HORSLEY_1, HORSLEY_2, HORSLEY_3].map((img, i) => (
               <div
                 key={i}
                 className="relative rounded-2xl overflow-hidden group cursor-pointer"
@@ -553,7 +555,7 @@ export default function Home() {
               Ready to Start Your Journey?
             </h2>
             <p className="text-lg max-w-2xl mx-auto" style={{ color: '#64748b', fontFamily: 'Inter, sans-serif' }}>
-              Fill in the form below and our friendly team will be in touch within 1 business day to discuss your NDIS options and find the right support for you.
+              Complete the form below to schedule a call and discuss your NDIS support options. Our friendly team will be in touch as soon as possible.
             </p>
           </div>
 
@@ -578,8 +580,8 @@ export default function Home() {
                 (02) 9159 4976
               </a>{" "}
               or email{" "}
-              <a href="mailto:support@ausnewhomecare.com" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>
-                support@ausnewhomecare.com
+              <a href="mailto:support@ausnesupports.com.au" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>
+                support@ausnesupports.com.au
               </a>
             </p>
           </div>

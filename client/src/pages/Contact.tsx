@@ -30,8 +30,8 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    value: "support@ausnewhomecare.com",
-    href: "mailto:support@ausnewhomecare.com",
+    value: "support@ausnesupports.com.au",
+    href: "mailto:support@ausnesupports.com.au",
     color: "#1B3A5C",
   },
   {
@@ -147,7 +147,7 @@ export default function Contact() {
                 Disability Support Services Enquiry
               </h2>
               <p className="text-sm" style={{ color: '#64748b', fontFamily: 'Inter, sans-serif' }}>
-                Fill in the form and our support team will get back to you within 24 hours.
+                Complete the form below to schedule a call and discuss your NDIS support options. Our friendly team will be in touch as soon as possible.
               </p>
               </div>
 
@@ -235,7 +235,7 @@ export default function Contact() {
                 </h3>
                 <div className="flex gap-3">
                   <a
-                    href="https://www.facebook.com/ausnewhomecare/"
+                    href="https://www.facebook.com/ausnewsupportservices/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold transition-all hover:scale-105"

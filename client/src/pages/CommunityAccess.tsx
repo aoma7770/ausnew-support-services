@@ -6,7 +6,7 @@ import { useRef, useEffect, useState } from "react";
 import { Link } from "wouter";
 import { ArrowRight, CheckCircle, Users, MapPin, Music, Heart, Bike, Coffee, Phone } from "lucide-react";
 
-const COMMUNITY_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/community_access-akaNJq2n7GsWugNyec3gQZ.webp";
+const COMMUNITY_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/van_harbour_e462bb57.jpg";
 
 function useScrollReveal(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
@@ -212,7 +212,7 @@ export default function CommunityAccess() {
               Community Access Enquiry
             </h2>
             <p className="text-base" style={{ color: '#64748b', fontFamily: 'Inter, sans-serif' }}>
-              Fill in the form below and our team will be in touch within 24 hours.
+              Complete the form below to schedule a call and discuss your NDIS support options. Our friendly team will be in touch as soon as possible.
             </p>
           </div>
           <div
@@ -240,7 +240,7 @@ export default function CommunityAccess() {
           </div>
           <p className="text-center text-sm mt-6" style={{ color: '#94a3b8', fontFamily: 'Inter, sans-serif' }}>
             Prefer to call? <a href="tel:0291594976" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>(02) 9159 4976</a> or email{" "}
-            <a href="mailto:support@ausnewhomecare.com" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>support@ausnewhomecare.com</a>
+            <a href="mailto:support@ausnesupports.com.au" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>support@ausnesupports.com.au</a>
           </p>
         </div>
       </section>

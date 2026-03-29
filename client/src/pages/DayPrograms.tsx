@@ -424,7 +424,7 @@ export default function DayPrograms() {
                 Enquire About Our Day Programs
               </h2>
               <p className="text-base max-w-xl mx-auto" style={{ color: '#64748b', fontFamily: 'Inter, sans-serif' }}>
-                Fill in the form below and our friendly team will be in touch within 1 business day to discuss your options and find the right program for you.
+                Complete the form below to schedule a call and discuss your NDIS support options. Our friendly team will be in touch as soon as possible.
               </p>
             </div>
 
@@ -447,8 +447,8 @@ export default function DayPrograms() {
                   (02) 9159 4976
                 </a>{" "}
                 or email{" "}
-                <a href="mailto:support@ausnewhomecare.com" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>
-                  support@ausnewhomecare.com
+                <a href="mailto:support@ausnesupports.com.au" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>
+                  support@ausnesupports.com.au
                 </a>
               </p>
             </div>
