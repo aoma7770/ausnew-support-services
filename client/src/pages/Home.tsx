@@ -580,8 +580,8 @@ export default function Home() {
                 (02) 9159 4976
               </a>{" "}
               or email{" "}
-              <a href="mailto:support@ausnesupports.com.au" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>
-                support@ausnesupports.com.au
+              <a href="mailto:info@ausnewsupports.com.au" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>
+                info@ausnewsupports.com.au
               </a>
             </p>
           </div>

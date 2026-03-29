@@ -18,14 +18,15 @@ export default function Footer() {
             <img
               src={LOGO_URL}
               alt="AUSnew Support Services"
-              className="h-14 w-auto mb-5 brightness-0 invert"
+              className="h-16 w-auto mb-5"
+              style={{ filter: 'brightness(0) invert(1)' }}
             />
             <p className="text-sm leading-relaxed mb-5" style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }}>
               A registered NDIS provider delivering quality disability support services across Australia. Empowering individuals to live the life they choose.
             </p>
             <div className="flex gap-3">
               <a
-                href="https://www.facebook.com/ausnewsupportservices/"
+                href="https://www.facebook.com/ausnewhomecare/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow AUSnew on Facebook"
@@ -35,7 +36,9 @@ export default function Footer() {
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/ausnew_support_services/"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Follow AUSnew on Instagram"
                 className="w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110"
                 style={{ background: 'rgba(255,255,255,0.1)' }}
@@ -92,28 +95,16 @@ export default function Footer() {
                 { name: "Blog & Resources", href: "/blog" },
                 { name: "Contact Us", href: "/contact" },
                 { name: "Privacy Policy", href: "/privacy-policy" },
-                { name: "NDIS Website", href: "https://www.ndis.gov.au", external: true },
+                { name: "Terms of Service", href: "/terms-of-service" },
               ].map((item) => (
                 <li key={item.href}>
-                  {item.external ? (
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm transition-colors hover:text-[#2BBFCF]"
-                      style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }}
-                    >
-                      {item.name} ↗
-                    </a>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      className="text-sm transition-colors hover:text-[#2BBFCF]"
-                      style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }}
-                    >
-                      {item.name}
-                    </Link>
-                  )}
+                  <Link
+                    href={item.href}
+                    className="text-sm transition-colors hover:text-[#2BBFCF]"
+                    style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }}
+                  >
+                    {item.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -137,12 +128,12 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:support@ausnesupports.com.au"
+                  href="mailto:info@ausnewsupports.com.au"
                   className="flex items-start gap-3 text-sm transition-colors hover:text-[#2BBFCF] group"
                   style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }}
                 >
                   <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:text-[#2BBFCF]" style={{ color: '#2BBFCF' }} />
-                  support@ausnesupports.com.au
+                  info@ausnewsupports.com.au
                 </a>
               </li>
               <li>

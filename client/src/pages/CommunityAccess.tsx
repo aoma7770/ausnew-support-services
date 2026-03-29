@@ -240,7 +240,7 @@ export default function CommunityAccess() {
           </div>
           <p className="text-center text-sm mt-6" style={{ color: '#94a3b8', fontFamily: 'Inter, sans-serif' }}>
             Prefer to call? <a href="tel:0291594976" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>(02) 9159 4976</a> or email{" "}
-            <a href="mailto:support@ausnesupports.com.au" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>support@ausnesupports.com.au</a>
+            <a href="mailto:info@ausnewsupports.com.au" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>info@ausnewsupports.com.au</a>
           </p>
         </div>
       </section>

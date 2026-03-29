@@ -30,8 +30,8 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    value: "support@ausnesupports.com.au",
-    href: "mailto:support@ausnesupports.com.au",
+    value: "info@ausnewsupports.com.au",
+    href: "mailto:info@ausnewsupports.com.au",
     color: "#1B3A5C",
   },
   {

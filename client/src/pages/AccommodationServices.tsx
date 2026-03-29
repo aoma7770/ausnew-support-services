@@ -6,13 +6,17 @@ import { useRef, useEffect, useState } from "react";
 import { Link } from "wouter";
 import { ArrowRight, CheckCircle, MapPin, Phone, Home, Star, Users, Shield } from "lucide-react";
 
-const ACCOMMODATION_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/horsley_living_room_a02d578e.jpg";
+// Hero — Warragul exterior (professional real estate shot)
+const ACCOMMODATION_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/warragul_exterior_0abf4107.jpg";
+// Gallery — mix of properties
 const HORSLEY_1 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/horsley_living_room_a02d578e.jpg";
 const HORSLEY_2 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/horsley_open_plan_61f12aa9.jpg";
 const HORSLEY_3 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/horsley_bedroom_0c7c27dd.jpg";
-const HORSLEY_4 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/horsley_room2_1d68c341.jpg";
-const FAIRFIELD_1 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/openday_team_client_3e2d5bf2.jpg";
-const FAIRFIELD_2 = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/openday_client_assist_c54c34e3.jpg";
+const ABBOTSBURY_KITCHEN = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/abbotsbury_kitchen_de1bc7bf.jpg";
+const ABBOTSBURY_BATHROOM = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/abbotsbury_bathroom_60246064.jpg";
+const GLENFIELD_KITCHEN = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/glenfield_kitchen_b66a263a.jpg";
+const WARRAGUL_HALLWAY = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/warragul_hallway_5573b7c2.jpg";
+const WARRAGUL_BATHROOM = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/warragul_bathroom_5f9c03f6.jpg";
 
 function useScrollReveal(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
@@ -39,12 +43,14 @@ const features = [
 ];
 
 const propertyImages = [
-  { src: HORSLEY_1, alt: "AUSnew SDA property - spacious living room" },
-  { src: HORSLEY_2, alt: "AUSnew SDA property - open plan living and dining" },
-  { src: HORSLEY_3, alt: "AUSnew SDA property - accessible bedroom" },
-  { src: HORSLEY_4, alt: "AUSnew SDA property - modern interior" },
-  { src: FAIRFIELD_1, alt: "AUSnew team with participant at open home" },
-  { src: FAIRFIELD_2, alt: "AUSnew support worker assisting participant" },
+  { src: HORSLEY_1, alt: "AUSnew SDA property - spacious living room", label: "Fairfield, NSW" },
+  { src: HORSLEY_2, alt: "AUSnew SDA property - open plan living and dining", label: "Fairfield, NSW" },
+  { src: HORSLEY_3, alt: "AUSnew SDA property - accessible bedroom", label: "Fairfield, NSW" },
+  { src: ABBOTSBURY_KITCHEN, alt: "AUSnew SDA property - modern open-plan kitchen", label: "Abbotsbury, NSW" },
+  { src: ABBOTSBURY_BATHROOM, alt: "AUSnew SDA property - luxury accessible bathroom", label: "Abbotsbury, NSW" },
+  { src: GLENFIELD_KITCHEN, alt: "AUSnew SDA property - bright kitchen and dining", label: "Glenfield, NSW" },
+  { src: WARRAGUL_HALLWAY, alt: "AUSnew SDA property - wide accessible hallway", label: "Warragul, VIC" },
+  { src: WARRAGUL_BATHROOM, alt: "AUSnew SDA property - modern bathroom", label: "Warragul, VIC" },
 ];
 
 export default function AccommodationServices() {
@@ -199,6 +205,10 @@ export default function AccommodationServices() {
                   alt={img.alt}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
+                <div className="absolute bottom-0 left-0 right-0 px-3 py-2 text-xs font-semibold text-white"
+                  style={{ background: 'linear-gradient(transparent, rgba(27,58,92,0.85))', fontFamily: 'Inter, sans-serif' }}>
+                  <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{img.label}</span>
+                </div>
               </div>
             ))}
           </div>
@@ -212,7 +222,7 @@ export default function AccommodationServices() {
             Our Property Locations
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {["St Marys, NSW", "Horsley Park, NSW", "Plumpton, NSW", "Moorebank, NSW"].map((loc) => (
+            {["Fairfield, NSW", "Abbotsbury, NSW", "Glenfield, NSW", "Warragul, VIC"].map((loc) => (
               <div key={loc} className="flex items-center gap-2 p-4 rounded-xl text-center justify-center"
                 style={{ background: 'rgba(255,255,255,0.1)' }}>
                 <MapPin className="w-4 h-4 flex-shrink-0" style={{ color: '#2BBFCF' }} />
@@ -265,7 +275,7 @@ export default function AccommodationServices() {
 
           <p className="text-center text-sm mt-6" style={{ color: '#94a3b8', fontFamily: 'Inter, sans-serif' }}>
             Prefer to call? <a href="tel:0291594976" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>(02) 9159 4976</a> or email{" "}
-            <a href="mailto:support@ausnesupports.com.au" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>support@ausnesupports.com.au</a>
+            <a href="mailto:info@ausnewsupports.com.au" className="font-semibold hover:underline" style={{ color: '#2BBFCF' }}>info@ausnewsupports.com.au</a>
           </p>
         </div>
       </section>

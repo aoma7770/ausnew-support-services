@@ -19,7 +19,14 @@ function useScrollReveal(threshold = 0.15) {
   return { ref, visible };
 }
 
-const pricingData = [
+type PricingCategory = {
+  category: string;
+  supportItemNumber: string;
+  rates: { type: string; rate: string }[];
+  disclaimer?: string;
+};
+
+const pricingData: PricingCategory[] = [
   {
     category: "Assistance with Daily Life",
     supportItemNumber: "01",
@@ -48,12 +55,15 @@ const pricingData = [
     category: "Accommodation / Tenancy",
     supportItemNumber: "02",
     rates: [
-      { type: "SDA (Improved Liveability)", rate: "From $37,000/yr" },
-      { type: "SDA (Fully Accessible)", rate: "From $44,000/yr" },
-      { type: "SDA (High Physical Support)", rate: "From $67,000/yr" },
-      { type: "SIL Support", rate: "Individually quoted" },
-      { type: "STA / Respite", rate: "$380.00/day" },
+      { type: "SDA (Improved Liveability)", rate: "From $37,000/yr *" },
+      { type: "SDA (Fully Accessible)", rate: "From $44,000/yr *" },
+      { type: "SDA (High Physical Support)", rate: "From $67,000/yr *" },
+      { type: "SDA Respite", rate: "Individually quoted" },
+      { type: "SIL (Supported Independent Living)", rate: "Individually quoted" },
+      { type: "MTA (Medium Term Accommodation)", rate: "Up to $248.96/day" },
+      { type: "STA / Respite", rate: "Up to $380.00/day" },
     ],
+    disclaimer: "* SDA annual contributions are set by the NDIA based on your individual plan, design category, and location. Figures shown are indicative minimums. All SDA and SIL pricing is individually assessed and quoted — contact us for a personalised quote.",
   },
 ];
 
@@ -147,7 +157,7 @@ export default function NDISPricing() {
                     <span className="text-xs font-bold uppercase tracking-wider" style={{ color: '#64748b', fontFamily: 'Poppins, sans-serif' }}>Support Type</span>
                     <span className="text-xs font-bold uppercase tracking-wider text-right" style={{ color: '#64748b', fontFamily: 'Poppins, sans-serif' }}>Rate</span>
                   </div>
-                  {category.rates.map((rate, ri) => (
+                  {category.rates.map((rate) => (
                     <div
                       key={rate.type}
                       className="grid grid-cols-2 px-6 py-4 border-b last:border-0 transition-colors hover:bg-teal-50"
@@ -158,6 +168,12 @@ export default function NDISPricing() {
                     </div>
                   ))}
                 </div>
+                {category.disclaimer && (
+                  <div className="px-6 py-4 flex items-start gap-2" style={{ background: '#fffbeb', borderTop: '1px solid #fde68a' }}>
+                    <Info className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: '#d97706' }} />
+                    <p className="text-xs leading-relaxed" style={{ color: '#92400e', fontFamily: 'Inter, sans-serif' }}>{category.disclaimer}</p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
