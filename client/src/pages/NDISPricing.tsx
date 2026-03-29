@@ -58,12 +58,12 @@ const pricingData: PricingCategory[] = [
       { type: "SDA (Improved Liveability)", rate: "From $37,000/yr *" },
       { type: "SDA (Fully Accessible)", rate: "From $44,000/yr *" },
       { type: "SDA (High Physical Support)", rate: "From $67,000/yr *" },
-      { type: "SDA Respite", rate: "Individually quoted" },
-      { type: "SIL (Supported Independent Living)", rate: "Individually quoted" },
-      { type: "MTA (Medium Term Accommodation)", rate: "Up to $248.96/day" },
-      { type: "STA / Respite", rate: "Up to $380.00/day" },
+      { type: "SDA Respite", rate: "Individually assessed & quoted *" },
+      { type: "SIL (Supported Independent Living)", rate: "Individually assessed & quoted *" },
+      { type: "MTA (Medium Term Accommodation)", rate: "Up to $725.24/day" },
+      { type: "STA / Respite (Short Term Accommodation)", rate: "Individually assessed & quoted *" },
     ],
-    disclaimer: "* SDA annual contributions are set by the NDIA based on your individual plan, design category, and location. Figures shown are indicative minimums. All SDA and SIL pricing is individually assessed and quoted — contact us for a personalised quote.",
+    disclaimer: "* SDA, SDA Respite, SIL, and STA/Respite pricing is individually assessed and set by the NDIA based on your plan, design category, support needs, and location. MTA rate shown is the current NDIS 2025-26 price limit (accommodation component only — support costs are claimed separately). Contact us for a personalised quote.",
   },
 ];
 

@@ -5,7 +5,7 @@
 import { Link } from "wouter";
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Heart } from "lucide-react";
 
-const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/logo_hd_3ec9b153.webp";
+const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/logo_transparent_0f69aa9a.webp";
 
 export default function Footer() {
   return (
@@ -19,7 +19,7 @@ export default function Footer() {
               src={LOGO_URL}
               alt="AUSnew Support Services"
               className="h-16 w-auto mb-5"
-              style={{ filter: 'brightness(0) invert(1)' }}
+              style={{ filter: 'brightness(0) invert(1)', background: 'transparent' }}
             />
             <p className="text-sm leading-relaxed mb-5" style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }}>
               A registered NDIS provider delivering quality disability support services across Australia. Empowering individuals to live the life they choose.
