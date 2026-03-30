@@ -100,10 +100,10 @@ export default function About() {
               </p>
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { value: "10,000+", label: "Hours of Support" },
-                  { value: "7+", label: "Years Experience" },
-                  { value: "50+", label: "Support Workers" },
-                  { value: "4", label: "Core Services" },
+                  { value: "100,000+", label: "Hours Delivered Annually" },
+                  { value: "24/7", label: "On-Call Support" },
+                  { value: "50+", label: "Communities Served" },
+                  { value: "8+", label: "Years Serving Australians" },
                 ].map((stat) => (
                   <div key={stat.label} className="p-4 rounded-xl text-center"
                     style={{ background: '#f0f9fa' }}>

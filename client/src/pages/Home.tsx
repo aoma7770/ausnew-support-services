@@ -80,10 +80,10 @@ const services = [
   },
 ];
 const stats = [
-  { value: 10000, suffix: "+", label: "Hours of Person-Centred Support", icon: Heart },
-  { value: 7, suffix: "+", label: "Years of Experience", icon: Award },
-  { value: 24, suffix: "/7", label: "Support Available", icon: Clock },
-  { value: 100, suffix: "%", label: "Participant Satisfaction Rate", icon: Shield },
+  { value: 100000, suffix: "+", label: "Hours of Person-Centred Support Delivered Annually", icon: Heart },
+  { value: 24, suffix: "/7", label: "On-Call Support Available", icon: Clock },
+  { value: 50, suffix: "+", label: "Communities Served", icon: Users },
+  { value: 8, suffix: "+", label: "Years Serving Australians With Disability", icon: Award },
 ];
 
 const testimonials = [
