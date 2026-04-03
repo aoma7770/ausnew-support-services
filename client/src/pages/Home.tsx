@@ -319,7 +319,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-base text-white transition-all hover:scale-105"
               style={{ background: '#1B3A5C', fontFamily: 'Poppins, sans-serif', boxShadow: '0 8px 30px rgba(27,58,92,0.3)' }}
             >
-              Start Your NDIS Journey <ArrowRight className="w-5 h-5" />
+              Explore Your Support Options <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
         </div>
