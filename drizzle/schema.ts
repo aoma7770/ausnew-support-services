@@ -26,3 +26,25 @@ export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
 // TODO: Add your tables here
+
+/**
+ * Blog posts published via Arvow webhook
+ */
+export const blogPosts = mysqlTable("blog_posts", {
+  id: int("id").autoincrement().primaryKey(),
+  arvowId: varchar("arvowId", { length: 64 }).notNull().unique(),
+  title: varchar("title", { length: 512 }).notNull(),
+  slug: varchar("slug", { length: 512 }).notNull().unique(),
+  content: text("content").notNull(),
+  contentMarkdown: text("contentMarkdown"),
+  thumbnail: varchar("thumbnail", { length: 1024 }),
+  thumbnailAltText: varchar("thumbnailAltText", { length: 512 }),
+  metaDescription: varchar("metaDescription", { length: 512 }),
+  keywordSeed: varchar("keywordSeed", { length: 256 }),
+  languageCode: varchar("languageCode", { length: 16 }).default("en"),
+  publishedAt: timestamp("publishedAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BlogPost = typeof blogPosts.$inferSelect;
+export type InsertBlogPost = typeof blogPosts.$inferInsert;

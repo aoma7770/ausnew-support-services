@@ -4,6 +4,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { invokeLLM } from "./_core/llm";
 import { notifyOwner } from "./_core/notification";
+import { getAllBlogPosts, getBlogPostBySlug } from "./db";
 import { z } from "zod";
 
 // ─── Janice System Prompt ────────────────────────────────────────────────────
@@ -51,6 +52,18 @@ IMPORTANT RULES:
 // ─── Router ──────────────────────────────────────────────────────────────────
 export const appRouter = router({
   system: systemRouter,
+
+  blog: router({
+    list: publicProcedure.query(async () => {
+      return getAllBlogPosts();
+    }),
+    bySlug: publicProcedure
+      .input(z.object({ slug: z.string() }))
+      .query(async ({ input }) => {
+        return getBlogPostBySlug(input.slug);
+      }),
+  }),
+
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {

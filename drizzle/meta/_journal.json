@@ -8,6 +8,13 @@
       "when": 1774798171522,
       "tag": "0000_red_king_cobra",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1775305369553,
+      "tag": "0001_white_sharon_carter",
+      "breakpoints": true
     }
   ]
 }

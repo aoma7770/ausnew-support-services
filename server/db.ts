@@ -1,6 +1,6 @@
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { blogPosts, InsertBlogPost, InsertUser, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -90,3 +90,43 @@ export async function getUserByOpenId(openId: string) {
 }
 
 // TODO: add feature queries here as your schema grows.
+
+// ─── Blog Helpers ────────────────────────────────────────────────────────────
+
+export async function upsertBlogPost(post: InsertBlogPost): Promise<void> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.insert(blogPosts).values(post).onDuplicateKeyUpdate({
+    set: {
+      title: post.title,
+      content: post.content,
+      contentMarkdown: post.contentMarkdown,
+      thumbnail: post.thumbnail,
+      thumbnailAltText: post.thumbnailAltText,
+      metaDescription: post.metaDescription,
+      keywordSeed: post.keywordSeed,
+    },
+  });
+}
+
+export async function getAllBlogPosts() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select({
+    id: blogPosts.id,
+    title: blogPosts.title,
+    slug: blogPosts.slug,
+    thumbnail: blogPosts.thumbnail,
+    thumbnailAltText: blogPosts.thumbnailAltText,
+    metaDescription: blogPosts.metaDescription,
+    keywordSeed: blogPosts.keywordSeed,
+    publishedAt: blogPosts.publishedAt,
+  }).from(blogPosts).orderBy(desc(blogPosts.publishedAt));
+}
+
+export async function getBlogPostBySlug(slug: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
