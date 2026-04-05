@@ -32,3 +32,5 @@
 - [x] Replace client/src/App.tsx with scroll-to-top fix version
 - [x] Add Back to Top button that appears after scrolling down
 - [x] Animate Back to Top button with bounce effect at bottom of page
+- [x] Confirm comments are fully disabled on blog posts
+- [x] Add hero CTA section at top of Community Access page

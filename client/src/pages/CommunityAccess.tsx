@@ -69,9 +69,25 @@ export default function CommunityAccess() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-5" style={{ fontFamily: 'Poppins, sans-serif' }}>
             Community Access
           </h1>
-          <p className="text-lg max-w-2xl text-white/90" style={{ fontFamily: 'Inter, sans-serif' }}>
+          <p className="text-lg max-w-2xl text-white/90 mb-8" style={{ fontFamily: 'Inter, sans-serif' }}>
             Getting out and engaging with friends and the community is just as important as enjoying your home environment. We'll help ensure you lead a life that's active and meaningful.
           </p>
+          <div className="flex flex-wrap gap-4">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-bold text-sm text-white transition-all hover:scale-105"
+              style={{ background: '#2BBFCF', fontFamily: 'Poppins, sans-serif', boxShadow: '0 8px 25px rgba(43,191,207,0.4)' }}
+            >
+              Get Support Now <ArrowRight className="w-4 h-4" />
+            </Link>
+            <a
+              href="tel:0291594976"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-bold text-sm transition-all hover:scale-105"
+              style={{ background: 'rgba(255,255,255,0.15)', color: 'white', border: '2px solid rgba(255,255,255,0.5)', fontFamily: 'Poppins, sans-serif' }}
+            >
+              <Phone className="w-4 h-4" /> (02) 9159 4976
+            </a>
+          </div>
         </div>
         <div className="absolute bottom-0 left-0 right-0">
           <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-12">
