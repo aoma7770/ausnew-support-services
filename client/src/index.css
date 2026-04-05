@@ -285,3 +285,365 @@
     top: 0;
   }
 }
+
+/* ==========================================================================
+   AUSnew Support Services — Blog Visual Enhancements
+   Version: 1.0
+   Author: Manus AI for Arvow
+   Description: Custom CSS to improve the visual presentation of blog articles
+                on ausnewsupports.com.au. Targets the .prose content container
+                used by the React-based site. Does NOT modify any content,
+                SEO elements, or structural HTML.
+
+   HOW TO APPLY:
+   Option A (Recommended) — Inject via the site's theme/CMS:
+     1. Log in to the site's admin panel (WordPress, Webflow, etc.)
+     2. Navigate to Appearance > Customize > Additional CSS
+        (or the equivalent custom CSS field in your theme settings)
+     3. Paste the entire contents of this file
+     4. Save / Publish
+
+   Option B — Add to the site's main stylesheet:
+     Copy this file's contents into the site's primary CSS file,
+     typically found at /assets/index-*.css or similar.
+
+   Option C — Inject via <style> tag in the <head>:
+     Wrap this CSS in <style> tags and add it to the site's <head> section.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. OVERALL ARTICLE TYPOGRAPHY & SPACING
+   -------------------------------------------------------------------------- */
+
+/* Base prose container — sets the reading rhythm for the whole article */
+.prose {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #334155;           /* Slate-700: softer than pure black, easier on the eyes */
+    line-height: 1.85;        /* Generous line height for readability */
+    font-size: 1.0625rem;     /* 17px — slightly larger than browser default */
+}
+
+/* Paragraph spacing — gives each paragraph room to breathe */
+.prose p {
+    margin-bottom: 1.4rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. HEADER HIERARCHY & VISUAL STRUCTURE
+   -------------------------------------------------------------------------- */
+
+/* H2 — Major section headings (e.g. "Understanding Supported Independent Living")
+   These are the primary structural dividers of the article. They should be
+   visually prominent with a clear separator line beneath them. */
+.prose h2 {
+    font-size: 1.75rem;                    /* 28px */
+    font-weight: 700;
+    color: #0f172a;                        /* Near-black for maximum contrast */
+    margin-top: 3rem;                      /* Generous top spacing to separate sections */
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid #e2e8f0;     /* Subtle underline separator */
+    letter-spacing: -0.01em;              /* Slightly tighter tracking for large headings */
+    line-height: 1.3;
+}
+
+/* H3 — Subsection headings (e.g. "What Is SIL?", "How SIL Funding Is Calculated")
+   These sit below H2s and should be clearly distinct from body text but
+   subordinate to H2s. */
+.prose h3 {
+    font-size: 1.25rem;                    /* 20px */
+    font-weight: 600;
+    color: #1e293b;                        /* Slightly lighter than H2 */
+    margin-top: 2.25rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.005em;
+    line-height: 1.4;
+}
+
+/* H4 — Minor subheadings, if used */
+.prose h4 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: #334155;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. BULLET POINTS & LISTS
+   -------------------------------------------------------------------------- */
+
+/* Unordered lists — ensures proper disc markers and indentation */
+.prose ul {
+    list-style-type: disc;
+    padding-left: 1.75rem;
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+/* Ordered lists */
+.prose ol {
+    list-style-type: decimal;
+    padding-left: 1.75rem;
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+/* Individual list items */
+.prose li {
+    margin-bottom: 0.6rem;
+    padding-left: 0.25rem;
+    line-height: 1.75;
+}
+
+/* Paragraphs inside list items (common in rich-text editors) */
+.prose li p {
+    margin-bottom: 0.25rem;
+}
+
+/* Nested lists */
+.prose li ul,
+.prose li ol {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. KEY TAKEAWAYS CALLOUT BOX
+   --------------------------------------------------------------------------
+   The "Key Takeaways" section at the top of each article is important context
+   for readers. This styling wraps it in a highlighted callout box.
+
+   NOTE: Because CSS :contains() is not a standard selector, this callout
+   styling must be applied via one of two methods:
+
+   METHOD A (JavaScript — recommended for React sites):
+   Paste the following script into the site's JS or as a <script> tag:
+
+   document.addEventListener('DOMContentLoaded', function() {
+     const prose = document.querySelector('.prose');
+     if (!prose) return;
+     const headings = prose.querySelectorAll('h3');
+     headings.forEach(function(h) {
+       if (h.textContent.trim() === 'Key Takeaways') {
+         const nextSib = h.nextElementSibling;
+         const wrapper = document.createElement('div');
+         wrapper.className = 'key-takeaways-callout';
+         h.parentNode.insertBefore(wrapper, h);
+         wrapper.appendChild(h);
+         if (nextSib && nextSib.tagName === 'UL') {
+           wrapper.appendChild(nextSib);
+         }
+       }
+     });
+   });
+
+   METHOD B (CMS/Template): Manually wrap the Key Takeaways section in a
+   <div class="key-takeaways-callout"> in the article template.
+   -------------------------------------------------------------------------- */
+
+.key-takeaways-callout {
+    background-color: #f0f9ff;            /* Light sky blue background */
+    border-left: 4px solid #0ea5e9;       /* Sky-500 accent bar */
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 2.5rem;
+    margin-top: 1rem;
+}
+
+.key-takeaways-callout h3 {
+    color: #0369a1;                        /* Sky-700 */
+    margin-top: 0 !important;
+    font-size: 0.875rem !important;        /* Smaller, label-style */
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700 !important;
+}
+
+.key-takeaways-callout ul {
+    margin-bottom: 0;
+    margin-top: 0.75rem;
+}
+
+.key-takeaways-callout li {
+    color: #0c4a6e;                        /* Sky-900 for readability on light bg */
+}
+
+
+/* --------------------------------------------------------------------------
+   5. TABLE STYLING
+   --------------------------------------------------------------------------
+   The SIL vs SDA comparison tables are currently rendered as two separate
+   flat tables stacked vertically. The CSS below styles them cleanly.
+
+   Additionally, the two tables should be MERGED into one unified 3-column
+   comparison table (Feature | SIL Funding | SDA Funding). This requires
+   a one-time content edit in the CMS to restructure the table HTML.
+
+   Target merged table structure:
+   <table>
+     <thead>
+       <tr><th>Feature</th><th>SIL Funding</th><th>SDA Funding</th></tr>
+     </thead>
+     <tbody>
+       <tr><td>What it funds</td><td>Support workers...</td><td>Specialist housing...</td></tr>
+       <tr><td>Budget Category</td><td>Core - Daily Activities</td><td>Capital - Home and Living</td></tr>
+       <tr><td>Focus</td><td>People and their support needs</td><td>The property and its accessibility features</td></tr>
+     </tbody>
+   </table>
+   -------------------------------------------------------------------------- */
+
+.prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    font-size: 0.9375rem;                  /* 15px — slightly smaller than body */
+}
+
+/* Table header cells */
+.prose th {
+    background-color: #1e3a5f;            /* Deep navy — matches the site's dark header */
+    color: #ffffff;
+    font-weight: 600;
+    text-align: left;
+    padding: 0.875rem 1.25rem;
+    border-bottom: none;
+    letter-spacing: 0.01em;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+}
+
+/* Table data cells */
+.prose td {
+    padding: 0.875rem 1.25rem;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: top;
+    color: #334155;
+}
+
+/* Zebra striping for even rows */
+.prose tr:nth-child(even) td {
+    background-color: #f8fafc;
+}
+
+/* Remove border from last row */
+.prose tr:last-child td {
+    border-bottom: none;
+}
+
+/* Bold the first column (row labels) */
+.prose td:first-child {
+    font-weight: 600;
+    color: #0f172a;
+}
+
+/* Remove paragraph margin inside table cells */
+.prose td p,
+.prose th p {
+    margin-bottom: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. BLOCKQUOTES
+   --------------------------------------------------------------------------
+   The NDIS Daily Living article contains blockquotes (e.g. "These supports
+   are about more than just getting tasks done..."). These should be visually
+   distinct from body text to draw the reader's attention. */
+
+.prose blockquote {
+    border-left: 4px solid #0ea5e9;       /* Sky-500 accent */
+    background-color: #f0f9ff;            /* Light sky blue */
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: #475569;                        /* Slate-600 */
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.prose blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. INLINE ELEMENTS
+   -------------------------------------------------------------------------- */
+
+/* Bold text — slightly darker than body for emphasis */
+.prose strong {
+    color: #0f172a;
+    font-weight: 600;
+}
+
+/* Italic text — used for key terms like "roster of care" */
+.prose em {
+    color: #475569;
+    font-style: italic;
+}
+
+/* Inline code */
+.prose code {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+}
+
+/* Horizontal rules */
+.prose hr {
+    border: none;
+    border-top: 2px solid #e2e8f0;
+    margin: 2.5rem 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. LINKS
+   -------------------------------------------------------------------------- */
+
+.prose a {
+    color: #0ea5e9;                        /* Sky-500 — matches site accent colour */
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.15s ease;
+}
+
+.prose a:hover {
+    color: #0369a1;                        /* Sky-700 on hover */
+}
+
+
+/* --------------------------------------------------------------------------
+   9. RESPONSIVE ADJUSTMENTS
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .prose h2 {
+        font-size: 1.5rem;
+    }
+
+    .prose h3 {
+        font-size: 1.125rem;
+    }
+
+    .prose table {
+        font-size: 0.875rem;
+    }
+
+    .prose th,
+    .prose td {
+        padding: 0.625rem 0.875rem;
+    }
+}

@@ -5,11 +5,40 @@
 import { Link, useParams } from "wouter";
 import { ArrowLeft, Calendar, Tag, BookOpen } from "lucide-react";
 import { trpc } from "@/lib/trpc";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const { data: post, isLoading } = trpc.blog.bySlug.useQuery({ slug: slug ?? "" }, { enabled: !!slug });
+
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // Wrap "Key Takeaways" blocks with styled callout div
+  useEffect(() => {
+    if (!contentRef.current) return;
+    const headings = contentRef.current.querySelectorAll('h2, h3, strong');
+    headings.forEach((el) => {
+      const text = (el.textContent || '').trim().toLowerCase();
+      if (text.includes('key takeaway') || text.includes('key points') || text.includes('quick summary')) {
+        // Find the next <ul> or <ol> sibling
+        let sibling = el.nextElementSibling;
+        if (el.tagName === 'STRONG' && el.parentElement?.tagName === 'P') {
+          sibling = el.parentElement.nextElementSibling;
+        }
+        if (sibling && (sibling.tagName === 'UL' || sibling.tagName === 'OL')) {
+          // Only wrap if not already wrapped
+          if (!sibling.parentElement?.classList.contains('key-takeaways-callout')) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'key-takeaways-callout';
+            const heading = el.tagName === 'STRONG' ? el.parentElement! : el;
+            heading.parentNode!.insertBefore(wrapper, heading);
+            wrapper.appendChild(heading);
+            wrapper.appendChild(sibling);
+          }
+        }
+      }
+    });
+  }, [post]);
 
   // Set page title dynamically for SEO
   useEffect(() => {
@@ -119,6 +148,7 @@ export default function BlogPost() {
         <div
           className="prose prose-lg max-w-none"
           style={{ fontFamily: 'Inter, sans-serif', color: '#334155', lineHeight: '1.8' }}
+          ref={contentRef}
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
 

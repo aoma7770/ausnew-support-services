@@ -27,3 +27,5 @@
 - [ ] Set up Arvow webhook URL in Arvow dashboard (https://www.ausnewsupports.com.au/api/blog/webhook)
 - [ ] Community Access and Contact pages — confirm if specific Wufoo forms needed
 - [ ] Root domain SSL fix (ausnewsupports.com.au without www)
+- [x] Replace client/src/pages/BlogPost.tsx with blog visual enhancement version
+- [x] Replace client/src/index.css with blog visual enhancement version
