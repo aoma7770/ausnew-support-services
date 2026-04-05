@@ -41,7 +41,7 @@ async function startServer() {
   // ─── Arvow Webhook ──────────────────────────────────────────────────────────
   app.post("/api/blog/webhook", async (req, res) => {
     try {
-      const secret = req.headers["x-arvow-secret"] || req.headers["authorization"]?.replace("Bearer ", "");
+      const secret = req.headers["x-secret"] || req.headers["x-arvow-secret"] || req.headers["authorization"]?.replace("Bearer ", "");
       const expectedSecret = process.env.ARVOW_WEBHOOK_SECRET;
 
       if (!expectedSecret || secret !== expectedSecret) {
