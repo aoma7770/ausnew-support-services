@@ -29,3 +29,4 @@
 - [ ] Root domain SSL fix (ausnewsupports.com.au without www)
 - [x] Replace client/src/pages/BlogPost.tsx with blog visual enhancement version
 - [x] Replace client/src/index.css with blog visual enhancement version
+- [x] Replace client/src/App.tsx with scroll-to-top fix version
