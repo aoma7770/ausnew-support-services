@@ -29,6 +29,50 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
   throw new Error(`No available port found starting from ${startPort}`);
 }
 
+// ─── Fallback Image Mapping ─────────────────────────────────────────────────
+// Maps keywords to branded fallback images for all four support areas
+// These are used when Arvow does not provide a thumbnail
+const FALLBACK_IMAGES: Record<string, string> = {
+  // SDA (Specialist Disability Accommodation)
+  sda: "/public/fallback-images/fallback_sda.png",
+  "specialist disability accommodation": "/public/fallback-images/fallback_sda.png",
+  accommodation: "/public/fallback-images/fallback_sda.png",
+  housing: "/public/fallback-images/fallback_sda.png",
+  
+  // SIL (Supported Independent Living)
+  sil: "/public/fallback-images/fallback_sil.png",
+  "supported independent living": "/public/fallback-images/fallback_sil.png",
+  "daily life": "/public/fallback-images/fallback_sil.png",
+  "assistance with daily life": "/public/fallback-images/fallback_sil.png",
+  "daily living": "/public/fallback-images/fallback_sil.png",
+  
+  // Community Access
+  "community access": "/public/fallback-images/fallback_community.png",
+  community: "/public/fallback-images/fallback_community.png",
+  "social activities": "/public/fallback-images/fallback_community.png",
+  
+  // Transport
+  transport: "/public/fallback-images/fallback_transport.png",
+  "ndis transport": "/public/fallback-images/fallback_transport.png",
+};
+
+/**
+ * Selects a fallback image based on the keyword seed or article title
+ * Defaults to SIL (most common support area) if no match found
+ */
+function selectFallbackImage(keywordSeed?: string | null, title?: string): string {
+  const searchText = (keywordSeed || title || "").toLowerCase();
+  
+  for (const [keyword, imagePath] of Object.entries(FALLBACK_IMAGES)) {
+    if (searchText.includes(keyword)) {
+      return imagePath;
+    }
+  }
+  
+  // Default fallback: SIL (day-to-day support is most common)
+  return FALLBACK_IMAGES.sil;
+}
+
 async function startServer() {
   const app = express();
   const server = createServer(app);
@@ -65,14 +109,27 @@ async function startServer() {
         .replace(/\s+/g, "-")
         .substring(0, 200);
 
+      // ─── NEW: Apply fallback image logic ─────────────────────────────────────
+      // If no thumbnail is provided by Arvow, select a branded fallback image
+      // based on the keyword seed or article title
+      let finalThumbnail = thumbnail ?? null;
+      let finalThumbnailAltText = thumbnail_alt_text ?? null;
+      
+      if (!finalThumbnail) {
+        finalThumbnail = selectFallbackImage(keyword_seed, title);
+        // Generate a descriptive alt text for the fallback image
+        finalThumbnailAltText = `AUSnew Support Services - ${title}`;
+        console.log(`[Arvow Webhook] No thumbnail provided. Using fallback: ${finalThumbnail}`);
+      }
+
       await upsertBlogPost({
         arvowId: String(id),
         title,
         slug,
         content,
         contentMarkdown: content_markdown ?? null,
-        thumbnail: thumbnail ?? null,
-        thumbnailAltText: thumbnail_alt_text ?? null,
+        thumbnail: finalThumbnail,
+        thumbnailAltText: finalThumbnailAltText,
         metaDescription: metadescription ?? null,
         keywordSeed: keyword_seed ?? null,
         languageCode: language_code ?? "en",
@@ -81,7 +138,7 @@ async function startServer() {
       // Notify owner of new blog post
       await notifyOwner({
         title: `📝 New SEO Blog Post Published: ${title}`,
-        content: `A new article has been published to the AUSnew blog via Arvow.\n\nTitle: ${title}\nKeyword: ${keyword_seed ?? "N/A"}\nSlug: /blog/${slug}`,
+        content: `A new article has been published to the AUSnew blog via Arvow.\n\nTitle: ${title}\nKeyword: ${keyword_seed ?? "N/A"}\nSlug: /blog/${slug}\nThumbnail: ${finalThumbnail ? (finalThumbnail.startsWith("/public") ? "Fallback Image" : "Custom Image") : "None"}`,
       }).catch(() => {}); // non-blocking
 
       console.log(`[Arvow Webhook] Published: "${title}" -> /blog/${slug}`);

@@ -34,3 +34,4 @@
 - [x] Animate Back to Top button with bounce effect at bottom of page
 - [x] Confirm comments are fully disabled on blog posts
 - [x] Add hero CTA section at top of Community Access page
+- [x] Replace App.tsx, BlogPost.tsx, index.css, and server/_core/index.ts with user-provided versions (blog visual enhancements + fallback image automation)

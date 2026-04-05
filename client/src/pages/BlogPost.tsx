@@ -1,6 +1,7 @@
 /*
  * AUSnew Support Services — Individual Blog Post Page
  * Renders a single article published via Arvow webhook
+ * Updated: Includes enhanced image styling and fallback handling
  */
 import { Link, useParams } from "wouter";
 import { ArrowLeft, Calendar, Tag, BookOpen } from "lucide-react";
@@ -126,14 +127,16 @@ export default function BlogPost() {
         </div>
       </section>
 
-      {/* Thumbnail */}
+      {/* Thumbnail — Enhanced with branded image styling */}
       {post.thumbnail && (
         <div className="max-w-3xl mx-auto px-4 -mt-8">
-          <img
-            src={post.thumbnail}
-            alt={post.thumbnailAltText ?? post.title}
-            className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-xl"
-          />
+          <div className="blog-hero-image-container">
+            <img
+              src={post.thumbnail}
+              alt={post.thumbnailAltText ?? post.title}
+              className="blog-hero-image"
+            />
+          </div>
         </div>
       )}
 
@@ -146,7 +149,7 @@ export default function BlogPost() {
         )}
 
         <div
-          className="prose prose-lg max-w-none"
+          className="prose prose-lg max-w-none blog-content"
           style={{ fontFamily: 'Inter, sans-serif', color: '#334155', lineHeight: '1.8' }}
           ref={contentRef}
           dangerouslySetInnerHTML={{ __html: post.content }}
