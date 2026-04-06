@@ -165,8 +165,6 @@ export default function Footer() {
               NDIS Registered Provider
             </span>
             <span>•</span>
-            <span>ABN: 31 620 493 941</span>
-            <span>•</span>
             <span>Serving Australia-Wide</span>
             <span>•</span>
             <span>24/7 Support Available</span>
