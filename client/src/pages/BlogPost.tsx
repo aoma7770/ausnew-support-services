@@ -52,7 +52,7 @@ export default function BlogPost() {
       }
     }
     return () => {
-      document.title = "AUSnew Support Services | NDIS Provider Sydney";
+      document.title = "AUSnew Support Services | Quality Disability Care";
     };
   }, [post]);
 
