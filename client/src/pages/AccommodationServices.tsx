@@ -4,9 +4,7 @@
  */
 import { useRef, useEffect, useState } from "react";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle, Home, ChevronLeft, ChevronRight, Send, Phone, Mail } from "lucide-react";
-import { trpc } from "@/lib/trpc";
-import { toast } from "sonner";
+import { ArrowRight, CheckCircle, Home, ChevronLeft, ChevronRight, Phone, Mail } from "lucide-react";
 
 const CAROUSEL_IMAGES = [
   { src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/horsley_living_room_a02d578e.jpg", alt: "Modern SDA property — spacious open living area" },
@@ -52,17 +50,9 @@ export default function AccommodationServices() {
   const [current, setCurrent] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const [form, setForm] = useState({ name: "", phone: "", email: "", ndisNumber: "", supportType: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
-
   const featuresSection = useScrollReveal(0.1);
   const carouselSection = useScrollReveal(0.05);
   const formSection = useScrollReveal(0.05);
-
-  const submitLead = trpc.leads.submit.useMutation({
-    onSuccess: () => { setSubmitted(true); toast.success("Enquiry received! Our team will be in touch shortly."); },
-    onError: () => { toast.error("Something went wrong. Please try again or call us directly."); },
-  });
 
   const startTimer = () => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -79,17 +69,6 @@ export default function AccommodationServices() {
     setIsTransitioning(true);
     setTimeout(() => { setCurrent(idx); setIsTransitioning(false); }, 300);
     startTimer();
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    submitLead.mutate({
-      name: form.name, phone: form.phone, email: form.email,
-      message: `Support type: ${form.supportType || "Not specified"}. NDIS: ${form.ndisNumber || "Not provided"}. ${form.message}`,
-      sourcePage: "Accommodation Services",
-      ndisNumber: form.ndisNumber,
-      supportType: form.supportType,
-    });
   };
 
   return (
@@ -218,86 +197,19 @@ export default function AccommodationServices() {
             </p>
           </div>
 
-          <div className="rounded-3xl p-8 md:p-10"
-            style={{ boxShadow: '0 20px 60px rgba(27,58,92,0.12)', border: '1px solid #e0f2f4', background: 'white', opacity: formSection.visible ? 1 : 0, transform: formSection.visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.6s ease' }}>
-            {submitted ? (
-              <div className="text-center py-10">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5" style={{ background: 'rgba(43,191,207,0.12)' }}>
-                  <CheckCircle className="w-8 h-8" style={{ color: '#2BBFCF' }} />
-                </div>
-                <h3 className="text-2xl font-black mb-3" style={{ color: '#1B3A5C', fontFamily: 'Poppins, sans-serif' }}>Enquiry Received!</h3>
-                <p className="text-base mb-6" style={{ color: '#64748b', fontFamily: 'Inter, sans-serif' }}>
-                  Thank you for reaching out. A member of our team will contact you shortly to discuss suitable accommodation options.
-                </p>
-                <a href="tel:0291594976" className="inline-flex items-center gap-2 text-sm font-semibold" style={{ color: '#2BBFCF' }}>
-                  <Phone className="w-4 h-4" /> (02) 9159 4976
-                </a>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold mb-1.5" style={{ color: '#1B3A5C', fontFamily: 'Inter, sans-serif' }}>Full Name <span style={{ color: '#FF6B6B' }}>*</span></label>
-                    <input type="text" required value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} placeholder="Your full name"
-                      className="w-full px-4 py-3 rounded-xl text-sm outline-none" style={{ border: '1.5px solid #e2e8f0', fontFamily: 'Inter, sans-serif', color: '#1e293b' }}
-                      onFocus={e => (e.target.style.borderColor = '#2BBFCF')} onBlur={e => (e.target.style.borderColor = '#e2e8f0')} />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold mb-1.5" style={{ color: '#1B3A5C', fontFamily: 'Inter, sans-serif' }}>Phone Number <span style={{ color: '#FF6B6B' }}>*</span></label>
-                    <input type="tel" required value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} placeholder="04XX XXX XXX"
-                      className="w-full px-4 py-3 rounded-xl text-sm outline-none" style={{ border: '1.5px solid #e2e8f0', fontFamily: 'Inter, sans-serif', color: '#1e293b' }}
-                      onFocus={e => (e.target.style.borderColor = '#2BBFCF')} onBlur={e => (e.target.style.borderColor = '#e2e8f0')} />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold mb-1.5" style={{ color: '#1B3A5C', fontFamily: 'Inter, sans-serif' }}>Email Address <span style={{ color: '#FF6B6B' }}>*</span></label>
-                  <input type="email" required value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} placeholder="your@email.com"
-                    className="w-full px-4 py-3 rounded-xl text-sm outline-none" style={{ border: '1.5px solid #e2e8f0', fontFamily: 'Inter, sans-serif', color: '#1e293b' }}
-                    onFocus={e => (e.target.style.borderColor = '#2BBFCF')} onBlur={e => (e.target.style.borderColor = '#e2e8f0')} />
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold mb-1.5" style={{ color: '#1B3A5C', fontFamily: 'Inter, sans-serif' }}>NDIS Number <span className="font-normal text-xs" style={{ color: '#94a3b8' }}>(optional)</span></label>
-                    <input type="text" value={form.ndisNumber} onChange={e => setForm(f => ({ ...f, ndisNumber: e.target.value }))} placeholder="43XXXXXXX"
-                      className="w-full px-4 py-3 rounded-xl text-sm outline-none" style={{ border: '1.5px solid #e2e8f0', fontFamily: 'Inter, sans-serif', color: '#1e293b' }}
-                      onFocus={e => (e.target.style.borderColor = '#2BBFCF')} onBlur={e => (e.target.style.borderColor = '#e2e8f0')} />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold mb-1.5" style={{ color: '#1B3A5C', fontFamily: 'Inter, sans-serif' }}>Accommodation Type</label>
-                    <select value={form.supportType} onChange={e => setForm(f => ({ ...f, supportType: e.target.value }))}
-                      className="w-full px-4 py-3 rounded-xl text-sm outline-none appearance-none"
-                      style={{ border: '1.5px solid #e2e8f0', fontFamily: 'Inter, sans-serif', color: form.supportType ? '#1e293b' : '#94a3b8', background: 'white' }}
-                      onFocus={e => (e.target.style.borderColor = '#2BBFCF')} onBlur={e => (e.target.style.borderColor = '#e2e8f0')}>
-                      <option value="">Select type...</option>
-                      <option value="SDA">SDA — Specialist Disability Accommodation</option>
-                      <option value="SIL">SIL — Supported Independent Living</option>
-                      <option value="STA">STA — Short Term / Respite</option>
-                      <option value="Not sure">Not sure — need guidance</option>
-                    </select>
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold mb-1.5" style={{ color: '#1B3A5C', fontFamily: 'Inter, sans-serif' }}>Tell Us About Your Needs</label>
-                  <textarea rows={4} value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                    placeholder="Any additional details about your situation, support needs, or preferred location area..."
-                    className="w-full px-4 py-3 rounded-xl text-sm outline-none resize-none"
-                    style={{ border: '1.5px solid #e2e8f0', fontFamily: 'Inter, sans-serif', color: '#1e293b' }}
-                    onFocus={e => (e.target.style.borderColor = '#2BBFCF')} onBlur={e => (e.target.style.borderColor = '#e2e8f0')} />
-                </div>
-                <button type="submit" disabled={submitLead.isPending}
-                  className="w-full flex items-center justify-center gap-3 py-4 rounded-2xl font-bold text-white text-base transition-all hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed"
-                  style={{ background: 'linear-gradient(135deg, #1B3A5C 0%, #2BBFCF 100%)', fontFamily: 'Poppins, sans-serif', boxShadow: '0 8px 30px rgba(27,58,92,0.25)' }}>
-                  {submitLead.isPending ? (
-                    <><svg className="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" /></svg> Sending Enquiry...</>
-                  ) : (
-                    <><Send className="w-5 h-5" /> Submit Accommodation Enquiry</>
-                  )}
-                </button>
-                <p className="text-xs text-center" style={{ color: '#94a3b8', fontFamily: 'Inter, sans-serif' }}>
-                  Your information is kept strictly confidential and will only be used to assist with your accommodation enquiry.
-                </p>
-              </form>
-            )}
+          <div className="rounded-3xl overflow-hidden"
+            style={{ boxShadow: '0 20px 60px rgba(27,58,92,0.12)', border: '1px solid #e0f2f4', background: '#f0f9fa', opacity: formSection.visible ? 1 : 0, transform: formSection.visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.6s ease' }}>
+            <div className="p-2">
+              {/* Wufoo Form Embed */}
+              <iframe
+                title="Accommodation Services Enquiry Form"
+                src="https://abnab.wufoo.com/embed/x1cw6qtz11uk4s9/"
+                frameBorder={0}
+                scrolling="yes"
+                style={{ width: '100%', height: '544px', border: 'none', background: 'transparent' }}
+                aria-label="Accommodation services enquiry form"
+              />
+            </div>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8">
