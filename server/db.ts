@@ -1,6 +1,6 @@
 import { desc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { blogPosts, InsertBlogPost, InsertUser, users } from "../drizzle/schema";
+import { blogPosts, InsertBlogPost, InsertUser, InsertLead, leads, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -129,4 +129,28 @@ export async function getBlogPostBySlug(slug: string) {
   if (!db) return undefined;
   const result = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug)).limit(1);
   return result.length > 0 ? result[0] : undefined;
+}
+
+// ─── Leads Helpers ───────────────────────────────────────────────────────────
+
+export async function insertLead(data: Omit<InsertLead, 'id' | 'status' | 'notes' | 'createdAt' | 'updatedAt'>) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const [result] = await db.insert(leads).values({
+    name: data.name,
+    phone: data.phone,
+    email: data.email,
+    message: data.message ?? null,
+    sourcePage: data.sourcePage,
+    ndisNumber: data.ndisNumber ?? null,
+    supportType: data.supportType ?? null,
+    status: 'new',
+  });
+  return { id: (result as any).insertId as number };
+}
+
+export async function getAllLeads() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(leads).orderBy(desc(leads.createdAt));
 }

@@ -48,3 +48,23 @@ export const blogPosts = mysqlTable("blog_posts", {
 
 export type BlogPost = typeof blogPosts.$inferSelect;
 export type InsertBlogPost = typeof blogPosts.$inferInsert;
+
+/**
+ * Lead enquiries submitted via native forms on the website
+ */
+export const leads = mysqlTable("leads", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 256 }).notNull(),
+  phone: varchar("phone", { length: 64 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  message: text("message"),
+  sourcePage: varchar("sourcePage", { length: 256 }).notNull(),
+  ndisNumber: varchar("ndisNumber", { length: 64 }),
+  supportType: varchar("supportType", { length: 128 }),
+  status: mysqlEnum("status", ["new", "contacted", "qualified", "converted", "not_suitable"]).default("new").notNull(),
+  notes: text("notes"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
+});
+export type Lead = typeof leads.$inferSelect;
+export type InsertLead = typeof leads.$inferInsert;

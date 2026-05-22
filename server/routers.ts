@@ -4,7 +4,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { invokeLLM } from "./_core/llm";
 import { notifyOwner } from "./_core/notification";
-import { getAllBlogPosts, getBlogPostBySlug } from "./db";
+import { getAllBlogPosts, getBlogPostBySlug, insertLead, getAllLeads } from "./db";
 import { z } from "zod";
 
 // ─── Janice System Prompt ────────────────────────────────────────────────────
@@ -70,6 +70,31 @@ export const appRouter = router({
       const cookieOptions = getSessionCookieOptions(ctx.req);
       ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
       return { success: true } as const;
+    }),
+  }),
+
+  leads: router({
+    submit: publicProcedure
+      .input(z.object({
+        name: z.string().min(1),
+        phone: z.string().min(1),
+        email: z.string().email(),
+        message: z.string().optional(),
+        sourcePage: z.string(),
+        ndisNumber: z.string().optional(),
+        supportType: z.string().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const lead = await insertLead(input);
+        await notifyOwner({
+          title: `🎯 New Lead — ${input.sourcePage}`,
+          content: `Name: ${input.name}\nPhone: ${input.phone}\nEmail: ${input.email}\nSupport Type: ${input.supportType ?? 'Not specified'}\nNDIS Number: ${input.ndisNumber ?? 'Not provided'}\nMessage: ${input.message ?? 'None'}\nSource: ${input.sourcePage}`,
+        });
+        return { success: true, id: lead.id };
+      }),
+
+    list: publicProcedure.query(async () => {
+      return getAllLeads();
     }),
   }),
 
