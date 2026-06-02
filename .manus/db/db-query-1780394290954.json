@@ -1,0 +1,9 @@
+{
+  "query": "SELECT id, slug, title FROM blog_posts WHERE slug LIKE '%sunnyfield%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 8U8j46hjFY4a7ci.root --database RCY8bKak2jsgago7J824hj --execute SELECT id, slug, title FROM blog_posts WHERE slug LIKE '%sunnyfield%';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1891
+}
