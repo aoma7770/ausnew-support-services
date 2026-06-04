@@ -44,7 +44,7 @@ const SERVICE_CTAS: ServiceCTA[] = [
     description:
       "AUSnew Support Services helps NDIS participants engage with their community — social outings, recreational activities, skill building, and more. Our support workers are passionate about helping you live the life you choose.",
     servicePage: "/community-access",
-    formUrl: "https://abnab.wufoo.com/forms/community-access/",
+    formUrl: "https://www.ausnewsupports.com.au/community-access",
     formLabel: "Enquire About Community Access",
     icon: <Users className="w-6 h-6" />,
     accentColor: "#FF6B6B",
@@ -60,7 +60,7 @@ const SERVICE_CTAS: ServiceCTA[] = [
     description:
       "Our experienced support workers assist NDIS participants with daily tasks — personal care, meal preparation, household tasks, and building independence. We tailor support to your individual goals and NDIS plan.",
     servicePage: "/daily-life",
-    formUrl: "https://abnab.wufoo.com/forms/daily-life/",
+    formUrl: "https://www.ausnewsupports.com.au/contact",
     formLabel: "Enquire About Daily Life Support",
     icon: <Heart className="w-6 h-6" />,
     accentColor: "#1B3A5C",
@@ -76,7 +76,7 @@ const SERVICE_CTAS: ServiceCTA[] = [
     description:
       "AUSnew Support Services runs structured day programs designed to build skills, confidence, and social connections. Our programs are tailored to individual needs and are available to NDIS participants across our service areas.",
     servicePage: "/day-programs",
-    formUrl: "https://abnab.wufoo.com/forms/day-programs/",
+    formUrl: "https://www.ausnewsupports.com.au/day-programs",
     formLabel: "Enquire About Day Programs",
     icon: <Sun className="w-6 h-6" />,
     accentColor: "#f59e0b",
@@ -93,8 +93,8 @@ const DEFAULT_CTA: ServiceCTA = {
   description:
     "AUSnew Support Services is a registered NDIS provider offering accommodation, community access, daily life support, and day programs. Our friendly team is ready to help you access the right supports for your goals.",
   servicePage: "/contact",
-  formUrl: "https://abnab.wufoo.com/forms/x1cw6qtz11uk4s9/",
-  formLabel: "Get in Touch with Our Team",
+    formUrl: "https://www.ausnewsupports.com.au/contact",
+    formLabel: "Get in Touch with Our Team",
   icon: <Heart className="w-6 h-6" />,
   accentColor: "#2BBFCF",
   keywords: [],
