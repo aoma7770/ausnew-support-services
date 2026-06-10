@@ -21,11 +21,16 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FloatingCTA from "./components/FloatingCTA";
 import FloatingGetSupport from "./components/FloatingGetSupport";
+import { trackPageView } from "./lib/pixel";
+import { useScrollDepthTracking } from "./hooks/useScrollDepthTracking";
 // Scroll to top on every route change
 function ScrollToTop() {
   const [location] = useLocation();
+  useScrollDepthTracking();
   useEffect(() => {
     window.scrollTo(0, 0);
+    // Fire Meta Pixel PageView on every route change
+    trackPageView();
   }, [location]);
   return null;
 }

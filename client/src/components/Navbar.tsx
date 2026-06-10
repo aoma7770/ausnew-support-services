@@ -6,6 +6,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X, ChevronDown, Phone } from "lucide-react";
+import { trackPhoneClick, trackInitiateCheckout } from "@/lib/pixel";
 
 const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/logo_transparent_0f69aa9a.webp";
 
@@ -120,6 +121,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-3">
             <a
               href="tel:0291594976"
+              onClick={() => trackPhoneClick('navbar-desktop')}
               className="flex items-center gap-2 text-sm font-semibold text-[#1B3A5C] hover:text-[#2BBFCF] transition-colors"
               style={{ fontFamily: 'Poppins, sans-serif' }}
             >
@@ -128,6 +130,7 @@ export default function Navbar() {
             </a>
             <a
               href="/#enquiry-form"
+              onClick={() => trackInitiateCheckout('navbar-get-support-now')}
               className="btn-teal text-sm"
               style={{
                 background: '#2BBFCF',
@@ -167,6 +170,7 @@ export default function Navbar() {
           <nav className="pt-4 space-y-1" aria-label="Mobile navigation">
             <a
               href="tel:0291594976"
+              onClick={() => trackPhoneClick('navbar-mobile')}
               className="flex items-center gap-2 px-4 py-3 text-sm font-semibold text-[#1B3A5C] bg-teal-50 rounded-xl mb-3"
               style={{ fontFamily: 'Poppins, sans-serif' }}
             >

@@ -6,6 +6,7 @@
 import { useState, useEffect, useRef } from "react";
 import { X, Send, Phone, MessageCircle, Loader2 } from "lucide-react";
 import { trpc } from "@/lib/trpc";
+import { trackChatOpen, trackChatMessage, trackChatLeadCaptured, trackPhoneClick } from "@/lib/pixel";
 
 const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/logo_transparent_0f69aa9a.webp";
 
@@ -63,6 +64,7 @@ export default function FloatingCTA() {
       ]);
       if (data.leadCaptured) {
         setLeadCaptured(true);
+        trackChatLeadCaptured();
       }
       setIsTyping(false);
     },
@@ -100,6 +102,8 @@ export default function FloatingCTA() {
     setMessages(updatedMessages);
     setInput("");
     setIsTyping(true);
+    // Track each message sent
+    trackChatMessage(updatedMessages.filter(m => m.role === 'user').length);
 
     // Send the full conversation history to the LLM
     chatMutation.mutate({
@@ -327,7 +331,7 @@ export default function FloatingCTA() {
 
       {/* ── Toggle Button ── */}
       <button
-        onClick={() => setOpen(!open)}
+        onClick={() => { if (!open) trackChatOpen(); setOpen(!open); }}
         className="w-14 h-14 rounded-full flex items-center justify-center text-white shadow-2xl transition-all hover:scale-110 active:scale-95 relative"
         style={{
           background: open ? "#1B3A5C" : "#2BBFCF",

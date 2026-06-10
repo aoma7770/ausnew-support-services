@@ -6,6 +6,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
+import { trackFloatingCTAClick } from "@/lib/pixel";
 
 export default function FloatingGetSupport() {
   const [visible, setVisible] = useState(false);
@@ -32,6 +33,7 @@ export default function FloatingGetSupport() {
     >
       <Link href="/contact">
         <button
+          onClick={trackFloatingCTAClick}
           className="flex items-center gap-2 px-5 py-3 text-white font-bold text-sm rounded-r-full shadow-2xl transition-all hover:scale-105 active:scale-95 hover:shadow-red-400/40 group"
           style={{
             background: "linear-gradient(135deg, #FF6B6B 0%, #e85555 100%)",

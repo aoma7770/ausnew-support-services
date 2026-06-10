@@ -7,6 +7,7 @@ import { Link, useParams } from "wouter";
 import { ArrowLeft, Calendar, Tag, BookOpen, ArrowRight, Home, Users, Heart, Sun } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { useEffect, useRef } from "react";
+import { trackBlogRead, trackBlogCTAClick } from "@/lib/pixel";
 
 // ─── Service CTA config ────────────────────────────────────────────────────────
 type ServiceCTA = {
@@ -155,6 +156,8 @@ export default function BlogPost() {
       if (metaDesc && post.metaDescription) {
         metaDesc.setAttribute("content", post.metaDescription);
       }
+      // Track blog article read
+      trackBlogRead(post.slug, post.title);
     }
     return () => {
       document.title = "AUSnew Support Services | Quality Disability Care";
@@ -297,12 +300,15 @@ export default function BlogPost() {
                 href={cta.formUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackBlogCTAClick(cta.label + ' - Enquire')}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-bold text-white text-sm transition-all hover:scale-105"
                 style={{ background: `linear-gradient(135deg, #1B3A5C, ${cta.accentColor})`, fontFamily: 'Poppins, sans-serif', boxShadow: `0 4px 20px ${cta.accentColor}44` }}>
                 {cta.formLabel} <ArrowRight className="w-4 h-4" />
               </a>
               <Link href={cta.servicePage}>
-                <button className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-bold text-sm transition-all hover:scale-105"
+                <button
+                  onClick={() => trackBlogCTAClick(cta.label + ' - Learn More')}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-bold text-sm transition-all hover:scale-105"
                   style={{ border: `2px solid ${cta.accentColor}`, color: '#1B3A5C', background: 'white', fontFamily: 'Poppins, sans-serif' }}>
                   Learn More About {cta.label} <ArrowRight className="w-4 h-4" />
                 </button>

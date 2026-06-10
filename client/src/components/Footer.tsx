@@ -4,6 +4,7 @@
  */
 import { Link } from "wouter";
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Heart } from "lucide-react";
+import { trackPhoneClick, trackEmailClick } from "@/lib/pixel";
 
 const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663486953469/RCY8bKak2jsgago7J824hj/logo_transparent_0f69aa9a.webp";
 
@@ -119,6 +120,7 @@ export default function Footer() {
               <li>
                 <a
                   href="tel:0291594976"
+                  onClick={() => trackPhoneClick('footer')}
                   className="flex items-start gap-3 text-sm transition-colors hover:text-[#2BBFCF] group"
                   style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }}
                 >
@@ -129,6 +131,7 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:info@ausnewsupports.com.au"
+                  onClick={() => trackEmailClick('footer')}
                   className="flex items-start gap-3 text-sm transition-colors hover:text-[#2BBFCF] group"
                   style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }}
                 >
