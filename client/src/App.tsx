@@ -20,6 +20,7 @@ import TermsOfService from "./pages/TermsOfService";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FloatingCTA from "./components/FloatingCTA";
+import FloatingGetSupport from "./components/FloatingGetSupport";
 // Scroll to top on every route change
 function ScrollToTop() {
   const [location] = useLocation();
@@ -64,6 +65,7 @@ function App() {
             <Router />
           </main>
           <Footer />
+          <FloatingGetSupport />
           <FloatingCTA />
         </TooltipProvider>
       </ThemeProvider>
