@@ -31,39 +31,36 @@ const pricingData: PricingCategory[] = [
     category: "Assistance with Daily Life",
     supportItemNumber: "01",
     rates: [
-      { type: "Weekday Daytime", rate: "$70.23" },
-      { type: "Weekday Evening", rate: "$77.38" },
-      { type: "Weekday Night", rate: "$78.30" },
-      { type: "Saturday", rate: "$98.83" },
-      { type: "Sunday", rate: "$127.43" },
-      { type: "Public Holiday", rate: "$155.95" },
+      { type: "Weekday Daytime", rate: "$73.58" },
+      { type: "Weekday Evening", rate: "$81.07" },
+      { type: "Weekday Night", rate: "$82.57" },
+      { type: "Saturday", rate: "$103.54" },
+      { type: "Sunday", rate: "$133.50" },
+      { type: "Public Holiday", rate: "$163.46" },
     ],
   },
   {
     category: "Community Access",
     supportItemNumber: "04",
     rates: [
-      { type: "Weekday Daytime", rate: "$70.23" },
-      { type: "Weekday Evening", rate: "$77.38" },
-      { type: "Weekday Night", rate: "$78.30" },
-      { type: "Saturday", rate: "$98.83" },
-      { type: "Sunday", rate: "$127.43" },
-      { type: "Public Holiday", rate: "$155.95" },
+      { type: "Weekday Daytime", rate: "$73.58" },
+      { type: "Weekday Evening", rate: "$81.07" },
+      { type: "Weekday Night", rate: "$82.57" },
+      { type: "Saturday", rate: "$103.54" },
+      { type: "Sunday", rate: "$133.50" },
+      { type: "Public Holiday", rate: "$163.46" },
     ],
   },
   {
     category: "Accommodation / Tenancy",
     supportItemNumber: "02",
     rates: [
-      { type: "SDA (Improved Liveability)", rate: "From $37,000/yr *" },
-      { type: "SDA (Fully Accessible)", rate: "From $44,000/yr *" },
-      { type: "SDA (High Physical Support)", rate: "From $67,000/yr *" },
-      { type: "SDA Respite", rate: "Individually assessed & quoted *" },
-      { type: "SIL (Supported Independent Living)", rate: "Individually assessed & quoted *" },
-      { type: "MTA (Medium Term Accommodation)", rate: "Up to $725.24/day" },
-      { type: "STA / Respite (Short Term Accommodation)", rate: "Individually assessed & quoted *" },
+      { type: "SDA (all design categories)", rate: "Use the 2026–27 SDA Price Calculator *" },
+      { type: "SIL (Supported Independent Living)", rate: "Quoted for your approved supports *" },
+      { type: "MTA (Medium Term Accommodation)", rate: "Up to $162.85/day" },
+      { type: "STA participant accommodation", rate: "Up to $162.85/day" },
     ],
-    disclaimer: "* SDA, SDA Respite, SIL, and STA/Respite pricing is individually assessed and set by the NDIA based on your plan, design category, support needs, and location. MTA rate shown is the current NDIS 2025-26 price limit (accommodation component only — support costs are claimed separately). Contact us for a personalised quote.",
+    disclaimer: "* SDA funding is calculated using the official 2026–27 SDA Price Calculator and varies by the enrolled dwelling, design category, location and participant eligibility. SIL and STA support costs are agreed in your Service Agreement based on your approved supports. MTA and STA participant accommodation figures shown are national 2026–27 schedule amounts; support costs are claimed separately. Contact us for a personalised quote.",
   },
 ];
 
@@ -87,13 +84,13 @@ export default function NDISPricing() {
           </div>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-5"
             style={{ background: 'rgba(43,191,207,0.2)', color: '#2BBFCF', border: '1px solid rgba(43,191,207,0.3)', fontFamily: 'Poppins, sans-serif' }}>
-            <DollarSign className="w-3.5 h-3.5" /> 2025-26 NDIS Price Guide
+            <DollarSign className="w-3.5 h-3.5" /> 2026–27 NDIS Pricing Schedule
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-5" style={{ fontFamily: 'Poppins, sans-serif' }}>
             NDIS Pricing
           </h1>
           <p className="text-lg max-w-2xl" style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }}>
-            Transparent pricing aligned with the 2025-26 NDIS Price Guide. No hidden fees, no surprises — just honest, quality care.
+            Transparent pricing aligned with the 2026–27 NDIS Pricing Schedule. No hidden fees, no surprises — just honest, quality care.
           </p>
         </div>
         <div className="absolute bottom-0 left-0 right-0">
@@ -111,10 +108,10 @@ export default function NDISPricing() {
             <Info className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#2BBFCF' }} />
             <div>
               <p className="text-sm font-semibold mb-1" style={{ color: '#1B3A5C', fontFamily: 'Poppins, sans-serif' }}>
-                2025-26 NDIS Price Guide
+                2026–27 NDIS Pricing Schedule
               </p>
               <p className="text-sm" style={{ color: '#64748b', fontFamily: 'Inter, sans-serif' }}>
-                All prices shown are maximum rates as per the NDIS Pricing Arrangements and Price Limits (2025-26). Rates are per hour (hr) unless otherwise stated. Prices are inclusive of GST where applicable. Contact us for an individualised quote.
+                The national amounts shown are the 2026–27 recommended maximum prices in the NDIS Pricing Schedule, effective 1 July 2026. Rates are per hour (hr) unless otherwise stated. Remote and very remote amounts may differ. Prices are inclusive of GST where applicable. <a href="https://www.ndis.gov.au/media/8703/download?attachment" target="_blank" rel="noreferrer" className="font-semibold underline">View the official schedule</a> or contact us for an individualised quote.
               </p>
             </div>
           </div>
@@ -257,7 +254,7 @@ export default function NDISPricing() {
               },
               {
                 q: "Are your prices negotiable?",
-                a: "Our prices are set in line with the NDIS Price Guide. However, we can discuss flexible arrangements and package options to maximise the value of your funding.",
+                a: "Our prices are set in line with the current NDIS Pricing Schedule and relevant NDIS pricing arrangements. We can discuss flexible arrangements and package options to maximise the value of your funding.",
               },
             ].map((faq, i) => (
               <div

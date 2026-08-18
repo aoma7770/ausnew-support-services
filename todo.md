@@ -35,3 +35,7 @@
 - [x] Confirm comments are fully disabled on blog posts
 - [x] Add hero CTA section at top of Community Access page
 - [x] Replace App.tsx, BlogPost.tsx, index.css, and server/_core/index.ts with user-provided versions (blog visual enhancements + fallback image automation)
+- [x] Research official 2026–27 NDIS Pricing Arrangements and audit all website pricing references
+- [x] Update NDIS pricing content across all affected website pages with verified 2026–27 figures and effective dates
+- [x] Verify pricing updates and test the site
+- [x] Save a deployment checkpoint for the verified 2026–27 NDIS pricing refresh

@@ -190,15 +190,15 @@ export default function CommunityAccess() {
               NDIS Pricing for Community Access
             </h2>
             <p style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }} className="text-sm">
-              2025-26 NDIS Price Guide rates
+              2026–27 NDIS Pricing Schedule — national rates
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
             {[
-              { label: "Weekday Daytime", rate: "$70.23/hr" },
-              { label: "Weekday Evening", rate: "$77.38/hr" },
-              { label: "Saturday", rate: "$98.83/hr" },
-              { label: "Sunday", rate: "$127.43/hr" },
+              { label: "Weekday Daytime", rate: "$73.58/hr" },
+              { label: "Weekday Evening", rate: "$81.07/hr" },
+              { label: "Saturday", rate: "$103.54/hr" },
+              { label: "Sunday", rate: "$133.50/hr" },
             ].map((item) => (
               <div key={item.label} className="p-4 rounded-xl text-center"
                 style={{ background: 'rgba(255,255,255,0.1)' }}>

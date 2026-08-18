@@ -41,7 +41,7 @@ All services are delivered in accordance with the NDIS Act 2013, the NDIS Code o
     content: `Before commencing support services, AUSnew Support Services will enter into a written Service Agreement with each NDIS participant (or their nominee or guardian). The Service Agreement will outline:
 
 • The specific supports to be provided
-• The agreed price for each support, consistent with the current NDIS Pricing Arrangements and Price Limits
+• The agreed price for each support, consistent with the current NDIS Pricing Schedule and applicable NDIS pricing arrangements
 • The schedule of supports and frequency of delivery
 • Cancellation and notice requirements
 • Participant rights and responsibilities
@@ -52,11 +52,11 @@ Service Agreements are reviewed regularly and updated in line with changes to th
   {
     id: "ndis-pricing",
     title: "4. NDIS Pricing and Payments",
-    content: `All pricing for NDIS-funded supports is consistent with the current NDIS Pricing Arrangements and Price Limits published by the NDIA. Prices are reviewed annually and updated when the NDIA releases a new Price Guide.
+    content: `All pricing for NDIS-funded supports is consistent with the current NDIS Pricing Schedule and applicable pricing arrangements published by the NDIA. Prices are reviewed annually and updated when the NDIA releases a new pricing schedule.
 
 For agency-managed participants, we invoice the NDIA directly through the NDIS portal. For plan-managed participants, we invoice the participant's plan manager. For self-managed participants, we invoice the participant directly.
 
-We do not charge above the NDIS Price Guide limits for any support. Additional charges (e.g., for cancellations or travel) will only be applied where permitted by the NDIS Pricing Arrangements and clearly disclosed in the Service Agreement.
+We do not charge above the relevant NDIS Pricing Schedule amounts for any price-limited support. Additional charges (e.g., for cancellations or travel) will only be applied where permitted by applicable NDIS pricing arrangements and clearly disclosed in the Service Agreement.
 
 Accommodation pricing (SDA, SIL, MTA) is individually assessed and quoted based on the participant's needs, NDIS plan, and property availability.`,
   },

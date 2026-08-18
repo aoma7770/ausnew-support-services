@@ -520,7 +520,7 @@ export default function Home() {
                 Understand Your NDIS Pricing
               </h2>
               <p className="text-base" style={{ color: '#a8c5d8', fontFamily: 'Inter, sans-serif' }}>
-                Transparent pricing aligned with the 2025-26 NDIS Price Guide. No hidden fees.
+                Transparent pricing aligned with the 2026–27 NDIS Pricing Schedule. No hidden fees.
               </p>
             </div>
             <div className="flex flex-wrap gap-4">
