@@ -111,6 +111,7 @@ export default function FloatingCTA() {
         role: m.role,
         content: m.content,
       })),
+      sourcePage: window.location.pathname,
     });
   };
 

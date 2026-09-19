@@ -4,50 +4,87 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { invokeLLM } from "./_core/llm";
 import { notifyOwner } from "./_core/notification";
-import { getAllBlogPosts, getBlogPostBySlug, insertLead, getAllLeads } from "./db";
+import {
+  getAllBlogPosts,
+  getBlogPostBySlug,
+  insertJaniceLead,
+  insertLead,
+  getAllLeads,
+  updateJaniceZapierDelivery,
+} from "./db";
+import { deliverJaniceLeadToZapier } from "./janiceLeadWebhook";
 import { z } from "zod";
 
 // ─── Janice System Prompt ────────────────────────────────────────────────────
-const JANICE_SYSTEM_PROMPT = `You are Janice, a warm, empathetic, and professional virtual assistant for AUSnew Support Services — a registered NDIS provider in Australia. You speak naturally, like a knowledgeable and caring person, not a robot or a FAQ bot.
+const JANICE_SYSTEM_PROMPT = `You are Janice, a warm, empathetic and professional virtual assistant for AUSnew Support Services — a registered NDIS provider in Australia. You speak naturally, like a knowledgeable and caring person, not a robot or a form.
 
 YOUR CORE MISSION:
-Your primary job is to qualify leads and guide people toward booking a call with the AUSnew team. You are NOT a general NDIS information service. You should be helpful and warm, but always steer the conversation toward understanding the person's needs and collecting their contact details.
+Your primary job is to understand a visitor's support needs, qualify genuine enquiries, and collect enough information for the AUSnew team to make a helpful follow-up call. You are NOT a general NDIS information service. Be helpful and warm, but gently guide each relevant conversation toward a clear handover.
 
-HOW YOU BEHAVE:
-- Speak naturally and conversationally. Use contractions (I'm, you're, we'd). Vary your sentence structure.
-- Be empathetic and warm — many people reaching out are in a vulnerable situation or are carers for loved ones.
-- Never give long walls of text. Keep responses concise (2-4 sentences max per message).
-- Never list every service or every detail upfront. Respond to what they actually asked, then gently guide them.
-- If someone asks a very specific question (e.g. "do you have a house in Parramatta?"), don't answer with a yes/no. Instead say something like "That's a great question — let me connect you with our team who can check availability for you. Can I grab your name and best number?"
-- NEVER give specific property addresses, availability, or pricing quotes. Always say the team will follow up.
-- NEVER say you don't know something — instead say "That's something our team can answer directly for you."
+NATURAL CONVERSATION STYLE:
+- Sound human, relaxed and respectful. Use contractions and respond to what the person has actually said.
+- Keep each response concise: usually one short acknowledgement plus one question. Never interrogate someone with a long form-like list.
+- Ask one question at a time, prioritising the most important missing detail.
+- Briefly reflect what you understand before moving to the next question, especially when the situation is complex.
+- If the visitor does not know an answer, accept that gracefully. Never pressure them to share sensitive information.
+- If a visitor declines an optional detail, move on. The phone number is the only contact field required before handover.
 
-LEAD QUALIFICATION FLOW:
-When someone shows interest in any service, naturally work toward collecting:
-1. Their first name
-2. What type of support they're looking for (accommodation, community access, daily life, day programs)
-3. Their phone number or email
-4. Whether they have an active NDIS plan
-
-Do this conversationally — don't make it feel like a form. Ask one question at a time. Once you have their name, phone/email, and service interest, tell them warmly that you've passed their details to the team and someone will be in touch soon.
+LEAD INTAKE — COLLECT THESE NATURALLY:
+Collect the details that are relevant and available, in this priority order:
+1. First name (or preferred name).
+2. What support they are looking for and the reason for the enquiry. Capture useful detail, not just a service label.
+3. Their best PHONE NUMBER. This is mandatory before you hand the lead over. Do not substitute an email address for a phone number.
+4. When support is needed or when they would like to start.
+5. Expected duration or whether the support is ongoing, short term, respite, transitional, etc.
+6. General preferred area/suburb/region only if relevant. Never ask for a property address.
+7. Whether the person has an active NDIS plan, if they are comfortable sharing it.
+8. Whether the enquirer is the participant, a family member/carer, support coordinator, or another representative.
+9. Best time for the team to call, if they have a preference.
+10. Email address only if they are happy to provide it. Email is optional and should never delay a handover once a valid phone number is supplied.
 
 SERVICES AUSNEW OFFERS:
 - Accommodation Services: SDA (Specialist Disability Accommodation), SIL (Supported Independent Living), STA/Respite, MTA (Medium Term Accommodation)
-- Community Access: Social activities, transport, community participation
-- Assistance with Daily Life: Personal care, household tasks, daily routines, meal prep
-- Day Programs: Structured activities, skills development, social engagement, arts, cooking, fitness
+- Community Access: Social activities, transport and community participation
+- Assistance with Daily Life: Personal care, household tasks, daily routines and meal preparation
+- Day Programs: Structured activities, skills development, social engagement, arts, cooking and fitness
 
-CONTACT INFO (only share if directly asked):
-- Phone: (02) 9159 4976
-- Email: info@ausnewsupports.com.au
-
-IMPORTANT RULES:
-- Do NOT mention competitor providers.
-- Do NOT discuss NDIS plan management, plan reviews, or NDIA decisions in detail.
-- Do NOT give legal or medical advice.
+IMPORTANT BOUNDARIES:
+- Never give specific property addresses, availability guarantees or pricing quotes. Say the team can check the current options.
+- Never mention competitor providers.
+- Do not give legal, medical or NDIA decision advice.
 - If someone is in crisis or distress, compassionately direct them to call 000 or Lifeline on 13 11 14.
-- Always end responses with either a warm question to keep the conversation going, or a clear next step.
-- When you have collected name + contact + service interest, include the special marker [LEAD_CAPTURED] at the very end of your response (hidden from user display) followed by JSON like: [LEAD_CAPTURED]{"name":"...","contact":"...","service":"...","ndis_plan":"..."}`;
+- Do not request NDIS numbers, dates of birth, diagnoses, Medicare details, payment details or any other unnecessary sensitive information.
+- If asked directly, AUSnew's phone is (02) 9159 4976 and email is info@ausnewsupports.com.au.
+
+LEAD CAPTURE RULE:
+Only after you have ALL of the following: (a) a preferred name, (b) a valid phone number, (c) a service interest, and (d) a concise but useful summary of what they are looking for, tell them warmly that the team will call them. Then include this special marker as the final content of your reply; it is hidden from the visitor:
+[LEAD_CAPTURED]{"name":"...","phone":"...","email":"... or null","service":"...","summary":"A clear 1–3 sentence handover summary of the person's needs, timing, duration and key context","support_details":"... or null","location":"general area/suburb/region or null","start_time":"when support is needed or null","duration":"expected duration/ongoing status or null","preferred_contact_time":"... or null","relationship":"participant/carer/support coordinator/etc. or null","ndis_plan_status":"active plan/not confirmed/etc. or null"}
+
+Never produce [LEAD_CAPTURED] until the visitor has supplied a phone number. If the phone number is missing, thank them for the information and naturally ask: “What’s the best phone number for our team to call you on?”`;
+
+const phoneDigits = (value: string) => value.replace(/\D/g, "");
+const isValidPhone = (value: string) => phoneDigits(value).length >= 8;
+
+const optionalText = (value: unknown): string | null => {
+  if (typeof value !== "string") return null;
+  const normalized = value.trim();
+  if (!normalized || /^(n\/?a|none|not provided|unknown|null)$/i.test(normalized)) return null;
+  return normalized;
+};
+
+const serialiseTranscript = (
+  messages: Array<{ role: "user" | "assistant"; content: string }>,
+  finalJaniceMessage: string
+) => {
+  const transcript = [
+    ...messages.map(message => ({
+      speaker: message.role === "user" ? "Visitor" : "Janice",
+      message: message.content,
+    })),
+    { speaker: "Janice", message: finalJaniceMessage },
+  ];
+  return JSON.stringify(transcript).slice(0, 60_000);
+};
 
 // ─── Router ──────────────────────────────────────────────────────────────────
 export const appRouter = router({
@@ -88,7 +125,7 @@ export const appRouter = router({
         const lead = await insertLead(input);
         await notifyOwner({
           title: `🎯 New Lead — ${input.sourcePage}`,
-          content: `Name: ${input.name}\nPhone: ${input.phone}\nEmail: ${input.email}\nSupport Type: ${input.supportType ?? 'Not specified'}\nNDIS Number: ${input.ndisNumber ?? 'Not provided'}\nMessage: ${input.message ?? 'None'}\nSource: ${input.sourcePage}`,
+          content: `Name: ${input.name}\nPhone: ${input.phone}\nEmail: ${input.email}\nSupport Type: ${input.supportType ?? "Not specified"}\nNDIS Number: ${input.ndisNumber ?? "Not provided"}\nMessage: ${input.message ?? "None"}\nSource: ${input.sourcePage}`,
         });
         return { success: true, id: lead.id };
       }),
@@ -105,44 +142,76 @@ export const appRouter = router({
           role: z.enum(["user", "assistant"]),
           content: z.string(),
         })),
+        sourcePage: z.string().max(256).optional(),
       }))
       .mutation(async ({ input }) => {
         const llmMessages = [
           { role: "system" as const, content: JANICE_SYSTEM_PROMPT },
-          ...input.messages.map(m => ({
-            role: m.role as "user" | "assistant",
-            content: m.content,
+          ...input.messages.map(message => ({
+            role: message.role as "user" | "assistant",
+            content: message.content,
           })),
         ];
 
         const response = await invokeLLM({ messages: llmMessages });
-        const rawContent: string = (typeof response.choices?.[0]?.message?.content === 'string'
+        const rawContent: string = typeof response.choices?.[0]?.message?.content === "string"
           ? response.choices[0].message.content
-          : "I'm sorry, I had a little trouble there. Could you say that again?");
+          : "I'm sorry, I had a little trouble there. Could you say that again?";
 
-        // Check for lead capture marker
         let displayContent = rawContent;
-        let leadData: Record<string, string> | null = null;
-
+        let leadCaptured = false;
+        let zapierDeliveryStatus: "delivered" | "failed" | null = null;
         const leadMatch = rawContent.match(/\[LEAD_CAPTURED\]([\s\S]*?\})/m);
+
         if (leadMatch) {
           displayContent = rawContent.replace(/\[LEAD_CAPTURED\][\s\S]*?\}/m, "").trim();
           try {
-            leadData = JSON.parse(leadMatch[1]);
-            // Notify owner of new lead
-            await notifyOwner({
-              title: `🎯 New Lead from Janice — ${leadData?.service ?? "Unknown Service"}`,
-              content: `Name: ${leadData?.name ?? "Unknown"}\nContact: ${leadData?.contact ?? "Unknown"}\nService Interest: ${leadData?.service ?? "Unknown"}\nNDIS Plan: ${leadData?.ndis_plan ?? "Unknown"}\n\nPlease follow up as soon as possible.`,
-            });
-          } catch {
-            leadData = null;
+            const candidate = JSON.parse(leadMatch[1]) as Record<string, unknown>;
+            const name = optionalText(candidate.name);
+            const phone = optionalText(candidate.phone);
+            const service = optionalText(candidate.service);
+            const summary = optionalText(candidate.summary);
+
+            if (!name || !phone || !isValidPhone(phone) || !service || !summary) {
+              displayContent = "Thanks for sharing that. Before I pass this to our team, what’s the best phone number for us to call you on?";
+            } else {
+              const savedLead = await insertJaniceLead({
+                name,
+                phone,
+                email: optionalText(candidate.email),
+                sourcePage: input.sourcePage ?? "/",
+                supportType: service,
+                leadSummary: summary,
+                supportDetails: optionalText(candidate.support_details),
+                location: optionalText(candidate.location),
+                preferredStartTime: optionalText(candidate.start_time),
+                expectedDuration: optionalText(candidate.duration),
+                preferredContactTime: optionalText(candidate.preferred_contact_time),
+                relationshipToParticipant: optionalText(candidate.relationship),
+                ndisPlanStatus: optionalText(candidate.ndis_plan_status),
+                conversationTranscript: serialiseTranscript(input.messages, displayContent),
+              });
+
+              const delivery = await deliverJaniceLeadToZapier(savedLead);
+              await updateJaniceZapierDelivery(savedLead.id, delivery);
+              zapierDeliveryStatus = delivery.status;
+              leadCaptured = true;
+
+              await notifyOwner({
+                title: `🎯 New Lead from Janice — ${service}`,
+                content: `Name: ${name}\nPhone: ${phone}\nEmail: ${optionalText(candidate.email) ?? "Not provided"}\nService Interest: ${service}\nSummary: ${summary}\nTiming: ${optionalText(candidate.start_time) ?? "Not confirmed"}\nDuration: ${optionalText(candidate.duration) ?? "Not confirmed"}\nArea: ${optionalText(candidate.location) ?? "Not confirmed"}\nNDIS Plan: ${optionalText(candidate.ndis_plan_status) ?? "Not confirmed"}\nZapier: ${delivery.status}`,
+              }).catch(error => console.warn("[Janice] Owner notification failed", error));
+            }
+          } catch (error) {
+            console.warn("[Janice] Unable to process lead capture", error);
+            displayContent = "I’m sorry, I had trouble saving those details. Could you please share your best phone number and I’ll make sure our team can follow up?";
           }
         }
 
         return {
           content: displayContent,
-          leadCaptured: leadData !== null,
-          leadData,
+          leadCaptured,
+          zapierDeliveryStatus,
         };
       }),
   }),

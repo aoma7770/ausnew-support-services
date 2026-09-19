@@ -149,6 +149,76 @@ export async function insertLead(data: Omit<InsertLead, 'id' | 'status' | 'notes
   return { id: (result as any).insertId as number };
 }
 
+export type InsertJaniceLead = {
+  name: string;
+  phone: string;
+  email?: string | null;
+  sourcePage: string;
+  supportType: string;
+  leadSummary: string;
+  supportDetails?: string | null;
+  location?: string | null;
+  preferredStartTime?: string | null;
+  expectedDuration?: string | null;
+  preferredContactTime?: string | null;
+  relationshipToParticipant?: string | null;
+  ndisPlanStatus?: string | null;
+  conversationTranscript: string;
+};
+
+export async function insertJaniceLead(data: InsertJaniceLead) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const [result] = await db.insert(leads).values({
+    name: data.name,
+    phone: data.phone,
+    email: data.email ?? null,
+    message: data.leadSummary,
+    sourcePage: data.sourcePage,
+    supportType: data.supportType,
+    sourceType: "janice_chat",
+    leadSummary: data.leadSummary,
+    supportDetails: data.supportDetails ?? null,
+    location: data.location ?? null,
+    preferredStartTime: data.preferredStartTime ?? null,
+    expectedDuration: data.expectedDuration ?? null,
+    preferredContactTime: data.preferredContactTime ?? null,
+    relationshipToParticipant: data.relationshipToParticipant ?? null,
+    ndisPlanStatus: data.ndisPlanStatus ?? null,
+    conversationTranscript: data.conversationTranscript,
+    zapierDeliveryStatus: "pending",
+    status: "new",
+  });
+
+  const id = (result as any).insertId as number;
+  const rows = await db.select().from(leads).where(eq(leads.id, id)).limit(1);
+  if (!rows[0]) throw new Error("Saved Janice lead could not be reloaded");
+  return rows[0];
+}
+
+export async function updateJaniceZapierDelivery(
+  id: number,
+  delivery: { status: "delivered"; deliveredAt: Date } | { status: "failed"; error: string }
+) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  if (delivery.status === "delivered") {
+    await db.update(leads).set({
+      zapierDeliveryStatus: "delivered",
+      zapierDeliveredAt: delivery.deliveredAt,
+      zapierError: null,
+    }).where(eq(leads.id, id));
+    return;
+  }
+
+  await db.update(leads).set({
+    zapierDeliveryStatus: "failed",
+    zapierError: delivery.error.slice(0, 512),
+  }).where(eq(leads.id, id));
+}
+
 export async function getAllLeads() {
   const db = await getDb();
   if (!db) return [];
